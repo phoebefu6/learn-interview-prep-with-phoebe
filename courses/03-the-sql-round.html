@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 3 of 6. The SQL round is mostly read before it is typed. Four checks said out loud (what one row is, who the id belongs to, where NULL can appear, what range and order are asked), the NULL, WHERE and HAVING rules read at source in the SQLite documentation, and what a randomized trial found about solving problems while someone watches.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The SQL round - learn interview prep with phoebe">
+<meta property="og:description" content="Session 3 of 6. Read the question before typing, the NULL and grouping rules at source, and practising the round out loud while watched.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/courses/03-the-sql-round.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The SQL round - learn interview prep with phoebe">
+<meta name="twitter:description" content="Session 3 of 6. Four checks out loud before the first keyword.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 3 · The SQL round - learn interview prep with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=15">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-interview-prep-with-phoebe</a> / Session 3 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Interview Prep with Phoebe · Session 3 of 6</div>
+    <h1>The <span class="accent">SQL</span> round</h1>
+    <p class="sub">Most wrong answers in a SQL round are not syntax errors. They are queries that run, return a plausible number, and answer a slightly different question: orders counted as items, undelivered orders scored as late, a filter applied before the average instead of after it, the last day of the year quietly dropped. Every one of those is caught before typing, by reading the question for four things and saying them out loud. Tonight we learn the four checks, read the NULL and grouping rules where the database itself writes them down, look at what a randomized trial found about solving problems while someone watches, and write all six of next session's bench queries on paper.</p>
+    <div class="chip-row">
+      <span class="chip level">🟡 Core</span>
+      <span class="chip audience">Anyone with a SQL round in the loop</span>
+      <span class="chip audience">Bring paper and a pen</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Read, NULLs, watched</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: six queries on paper</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Ren, our constructed analyst, rated SQL strong in session 1 and is right to. Ren writes queries every day. That is exactly the risk: daily SQL runs against tables Ren already knows, where the grain and the ids were learned years ago. An interview hands over an unfamiliar schema and a clock. Tonight Ren practises the part that daily work skips, reading a new schema and a new question out loud before writing anything, on the same three tables the session 4 bench uses.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = write it yourself</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> Four checks you can say out loud in the first minute of any SQL question, the NULL, WHERE and HAVING rules in the database's own words, a plan for practising while watched, and six queries written on paper, ready to run against the session 4 bench.</p>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>The schema used all night.</strong> A real sample of the Olist Brazilian e-commerce dataset (CC BY-NC-SA 4.0): 2,000 people, 2,085 orders, 2,359 order items, 775 sellers. <code>customers(customer_id, customer_unique_id, state)</code> · <code>orders(order_id, customer_id, status, purchase_ts, delivered_date, estimated_date)</code> · <code>order_items(order_id, item_no, product_id, seller_id, price)</code>. <code>purchase_ts</code> is a timestamp stored as text; <code>delivered_date</code> is a date or NULL. One line matters more than the rest: <code>customer_id</code> is issued per order, and <code>customer_unique_id</code> is the person. SQL as a subject lives in <a href="https://phoebefu6.github.io/learn-sql-with-phoebe/">Learn SQL with Phoebe ↗</a>; here it is a round.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers reading the question before typing</span>
+      <h2>Four checks before the first keyword</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Before you type, say four things. What is one row of the answer, and what is one row of each table you will touch? What identifies the thing being counted? Where can NULL appear? What range, and is a row order asked for? Each takes about ten seconds. Together they catch most of the planted traps an interviewer can set, and they let the interviewer hear you reason before there is anything on the screen to judge.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 318" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A constructed toy. Three orders on the left: order A with one item, order B with three items, order C with one item. After a join to order items in the middle they become five rows: A item 1, B item 1, B item 2, B item 3, C item 1. The two extra B rows are highlighted in coral as copies of order B. On the right, COUNT star returns 5, a count of items, highlighted in coral; COUNT DISTINCT order_id returns 3, a count of orders. Note: in the real sample 203 of 2,085 orders have several items, so the Q2 trap counts 850 and the answer is 802.">
+        <defs>
+          <filter id="p3aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="31" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p3aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p3aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p3aH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p3aL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p3aS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p3aB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p3aV { font: 800 18px Inter, sans-serif; fill: #1B3570; }
+          .p3aA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p3aN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p3aH" x="30" y="26">ONE ORDER FANS OUT INTO ITS ITEM ROWS AFTER A JOIN</text>
+        <text class="p3aA" x="40" y="50">ORDERS: ONE ROW PER ORDER</text>
+        <text class="p3aA" x="330" y="50">AFTER JOIN: ONE ROW PER ITEM</text>
+        <text class="p3aA" x="640" y="50">WHAT YOU COUNT</text>
+
+        <g filter="url(#p3aSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="70" width="210" height="34" rx="6" transform="rotate(-0.6 145 87)" fill="#FFFFFF"/>
+          <rect x="40" y="140" width="210" height="34" rx="6" transform="rotate(0.5 145 157)" fill="#EEF2FA"/>
+          <rect x="40" y="230" width="210" height="34" rx="6" transform="rotate(-0.4 145 247)" fill="#FFFFFF"/>
+          <path d="M254 87 L322 74 M254 157 L322 124 M254 157 L322 160 M254 157 L322 196 M254 247 L322 250" marker-end="url(#p3aAr)" stroke-width="1.6"/>
+          <rect x="330" y="60" width="240" height="28" rx="5" fill="#FFFFFF"/>
+          <rect x="330" y="110" width="240" height="28" rx="5" fill="#EEF2FA"/>
+          <rect x="330" y="146" width="240" height="28" rx="5" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="330" y="182" width="240" height="28" rx="5" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="330" y="236" width="240" height="28" rx="5" fill="#FFFFFF"/>
+          <path d="M578 110 L632 110 M578 200 L632 200" marker-end="url(#p3aAr)" stroke-width="1.6"/>
+          <rect x="640" y="78" width="200" height="64" rx="8" transform="rotate(0.6 740 110)" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="640" y="168" width="200" height="64" rx="8" transform="rotate(-0.5 740 200)" fill="#EEF2FA"/>
+          <path d="M790 112 L790 132 M798 112 L798 132 M806 112 L806 132 M814 112 L814 132 M822 112 L822 132 M784 128 L828 116" stroke="#C2453A" stroke-width="1.6"/>
+        </g>
+
+        <text class="p3aL" x="54" y="92">Order A · 1 item</text>
+        <text class="p3aL" x="54" y="162">Order B · 3 items</text>
+        <text class="p3aL" x="54" y="252">Order C · 1 item</text>
+        <text class="p3aS" x="344" y="79">A · item 1</text>
+        <text class="p3aS" x="344" y="129">B · item 1</text>
+        <text class="p3aB" x="344" y="165">B · item 2 · order B again</text>
+        <text class="p3aB" x="344" y="201">B · item 3 · order B again</text>
+        <text class="p3aS" x="344" y="255">C · item 1</text>
+        <text class="p3aB" x="654" y="98">COUNT(*)</text>
+        <text class="p3aV" x="654" y="126">5 rows</text>
+        <text class="p3aL" x="654" y="188">COUNT(DISTINCT order_id)</text>
+        <text class="p3aV" x="654" y="216">3 orders</text>
+
+        <text class="p3aN" x="30" y="294">Toy data. In the sample 203 of 2,085 orders have several items, so the Q2 trap counts 850; the answer is 802.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a join changes what one row means, and COUNT(*) counts whatever one row now is</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Grain: what is one row?<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Grain is the answer to "what does one row represent?". In <code>orders</code> one row is an order. In <code>order_items</code> one row is an item within an order. Join the two and one row becomes an item again, with the order's columns copied onto every item it has. Nothing warns you. The query runs, and any <code>COUNT(*)</code> after the join counts items.</p>
+        <p>Ask grain twice: once for each table you will touch, and once for the answer the question wants. "How many orders include at least one item priced above 100?" wants one number counting orders. The join's grain is items. That mismatch is the whole trap, and <code>COUNT(DISTINCT o.order_id)</code> or an <code>EXISTS</code> subquery closes it. In the sample, 203 of the 2,085 orders have more than one item, which is why the trap reads 850 instead of 802: 48 extra item rows.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Ids: what identifies the thing you count?<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A column called <code>customer_id</code> sounds like a person. In this dataset it is issued with each order, so every customer_id has exactly one order and "customers with more than one order" grouped by it returns nothing. The person is <code>customer_unique_id</code>. The schema note says so in one line, and the question rewards whoever read it.</p>
+        <p>Say it out loud: "the question counts people, so I need the column that identifies a person; is that customer_id or customer_unique_id?" If the schema does not say, ask the interviewer. Asking what identifies an entity is an ordinary professional question, and in most rooms it earns credit rather than costing it.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Range and order: what slice, and sorted how?<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Two last questions. What range does the question ask for, and is the boundary a date, a timestamp, or text that looks like either? And does it ask for a row order? "Orders per month in 2017, in month order" asks for one; "count the orders in each status" does not. A checker that compares rows will fail a correct answer returned in the wrong order when an order was asked, and should not when none was.</p>
+        <p>Then the fourth check from the title, NULL, which Part 2 takes in full. Write the four answers in the margin before the query: one row is ..., the id is ..., NULL can appear in ..., range and order are .... It looks slow. It is about forty seconds, and it is the forty seconds the interviewer most wants to hear.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The id that is not a person, in a real public dataset.</strong> The Olist data the bench samples is a real public dataset, and its customer table really does issue a fresh customer_id with every order. Anyone who groups by it to find repeat buyers gets zero and, if they are not reading the schema, may report zero. In the session 4 sample the right answer is 57 people with more than one order; the trap returns 0. Nothing in the query is wrong as SQL. The identity check was skipped.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers NULLs, aggregates, WHERE and HAVING, read at source</span>
+      <h2>What the database actually does with NULL and groups</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Most SQL folklore about NULL is roughly right and occasionally wrong in the way that costs an interview. The fix is to read what the engine says it does. The rules below were read in the SQLite documentation, which is what the session 4 bench runs, and SQLite states that its NULL handling was made to "work the same as Oracle, PostgreSQL, and DB2". Check your own dialect if the round names a different one.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 266" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The logical order a SELECT is described in, six boxes left to right: FROM and JOIN, where outer-join NULL rows are added; WHERE, a row filter that drops rows where the condition is false or NULL, highlighted in coral; GROUP BY, where rows become groups; HAVING, a group filter evaluated once per group; SELECT, where aggregates and aliases are computed; ORDER BY, which orders only if the question asks. Above WHERE a tag reads WHERE price over 150, the Q4 trap, 18 sellers. Above HAVING a tag reads HAVING AVG price over 150, 24 sellers. SQLite calls this order purely illustrative.">
+        <defs>
+          <filter id="p3bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="43" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p3bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p3bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p3bH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p3bL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p3bS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p3bB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p3bA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p3bN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p3bH" x="30" y="26">WHERE A ROW FILTER LANDS, AND WHERE A GROUP FILTER LANDS</text>
+
+        <g filter="url(#p3bSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M40 44 L76 44 L62 58 L62 68 L54 68 L54 58 Z" stroke-width="1.6"/>
+          <rect x="100" y="40" width="270" height="26" rx="6" transform="rotate(-0.8 235 53)" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="400" y="40" width="280" height="26" rx="6" transform="rotate(0.7 540 53)" fill="#EEF2FA"/>
+          <path d="M229 70 L229 94 M509 70 L509 94" marker-end="url(#p3bAr)" stroke-width="1.6"/>
+          <rect x="30" y="100" width="118" height="50" rx="8" transform="rotate(-0.6 89 125)" fill="#FFFFFF"/>
+          <rect x="170" y="100" width="118" height="50" rx="8" transform="rotate(0.5 229 125)" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="310" y="100" width="118" height="50" rx="8" transform="rotate(-0.4 369 125)" fill="#FFFFFF"/>
+          <rect x="450" y="100" width="118" height="50" rx="8" transform="rotate(0.6 509 125)" fill="#EEF2FA"/>
+          <rect x="590" y="100" width="118" height="50" rx="8" transform="rotate(-0.5 649 125)" fill="#FFFFFF"/>
+          <rect x="730" y="100" width="118" height="50" rx="8" transform="rotate(0.4 789 125)" fill="#FFFFFF"/>
+          <path d="M150 125 L166 125 M290 125 L306 125 M430 125 L446 125 M570 125 L586 125 M710 125 L726 125" marker-end="url(#p3bAr)" stroke-width="1.6"/>
+        </g>
+
+        <text class="p3bB" x="114" y="57">WHERE price &gt; 150 · trap, 18 sellers</text>
+        <text class="p3bS" x="414" y="57">HAVING AVG(price) &gt; 150 · 24 sellers</text>
+        <text class="p3bL" x="89" y="130" text-anchor="middle">FROM / JOIN</text>
+        <text class="p3bB" x="229" y="130" text-anchor="middle">WHERE</text>
+        <text class="p3bL" x="369" y="130" text-anchor="middle">GROUP BY</text>
+        <text class="p3bL" x="509" y="130" text-anchor="middle">HAVING</text>
+        <text class="p3bL" x="649" y="130" text-anchor="middle">SELECT</text>
+        <text class="p3bL" x="789" y="130" text-anchor="middle">ORDER BY</text>
+        <text class="p3bS" x="89" y="172" text-anchor="middle">rows joined;</text>
+        <text class="p3bS" x="89" y="188" text-anchor="middle">outer NULLs added</text>
+        <text class="p3bS" x="229" y="172" text-anchor="middle">row filter: drops</text>
+        <text class="p3bS" x="229" y="188" text-anchor="middle">false and NULL</text>
+        <text class="p3bS" x="369" y="172" text-anchor="middle">rows become</text>
+        <text class="p3bS" x="369" y="188" text-anchor="middle">groups</text>
+        <text class="p3bS" x="509" y="172" text-anchor="middle">group filter,</text>
+        <text class="p3bS" x="509" y="188" text-anchor="middle">once per group</text>
+        <text class="p3bS" x="649" y="172" text-anchor="middle">aggregates and</text>
+        <text class="p3bS" x="649" y="188" text-anchor="middle">aliases computed</text>
+        <text class="p3bS" x="789" y="172" text-anchor="middle">order only if</text>
+        <text class="p3bS" x="789" y="188" text-anchor="middle">the question asks</text>
+
+        <text class="p3bN" x="30" y="220">SQLite calls this order "purely illustrative": the engine may run it differently, the result is as if.</text>
+        <text class="p3bN" x="30" y="244">A row filter runs before groups exist; a group filter runs after. Q4 needs the second.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a condition on single rows belongs left of GROUP BY, a condition on a group's average belongs right of it</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>NULL inside a CASE inside AVG: Q3<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The documentation is precise: avg() "returns the average value of all non-NULL X within a group", and its result "is NULL if there are no non-NULL inputs". In the same family, <code>count(X)</code> counts the rows where X is not NULL while <code>count(*)</code> counts rows, and <code>sum()</code> over no non-NULL values is NULL where <code>total()</code> returns 0.0.</p>
+        <p>Now the trap. Q3 asks what share of delivered orders arrived on or before the estimated date. 59 orders in the sample were never delivered, so their <code>delivered_date</code> is NULL. <code>CASE WHEN delivered_date &lt;= estimated_date THEN 1 ELSE 0 END</code> sends a NULL comparison to the ELSE branch, so every undelivered order is scored as late and lands in the denominator. The trap reads 0.916; restricted to delivered orders, as asked, the answer is 0.943. Either filter with <code>WHERE delivered_date IS NOT NULL</code>, or let the undelivered rows produce NULL so that avg() skips them. Then say which you did, and why.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>WHERE filters rows, HAVING filters groups: Q4<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>SQLite excludes rows where the WHERE expression evaluates "to either false or NULL", and HAVING "is evaluated once for each group". Q4 asks for sellers with at least five items whose average price over all their items is above 150. Put <code>price &gt; 150</code> in WHERE and the cheap items are gone before any average is taken: every surviving average is above 150 by construction, and "at least five items" has become "at least five pricey items".</p>
+        <p>The reference returns 24 sellers; the WHERE version returns 18. The condition on the group's average belongs in <code>HAVING COUNT(*) &gt;= 5 AND AVG(price) &gt; 150</code>. One more rule from the same page: an aggregate query without GROUP BY "always returns exactly one row", which is why <code>SELECT COUNT(*) FROM orders WHERE 1 = 0</code> returns a single row holding 0, not an empty result.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Half-open date ranges: Q5<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><code>purchase_ts</code> is a timestamp stored as text. <code>BETWEEN '2017-01-01' AND '2017-12-31'</code> compares strings, and a value such as '2017-12-31 09:14:00' sorts after '2017-12-31', so every order placed during 31 December falls outside the range. In the sample that is 2 orders, and December reads 109 instead of 111 while the other eleven months are right. Write the range half-open, <code>purchase_ts &gt;= '2017-01-01' AND purchase_ts &lt; '2018-01-01'</code>, and the edge disappears whatever the time of day.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The LEFT JOIN that a WHERE quietly undoes<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>For an outer join, the NULL rows for unmatched records "are added after ON clause processing but before WHERE clause processing". So a LEFT JOIN from orders to order_items keeps orders with no items, padding the item columns with NULL, and then <code>WHERE i.price &gt; 100</code> removes exactly those padded rows, because a comparison with NULL is not true. The query is now an inner join wearing a LEFT JOIN's name. Move the condition into the ON clause when you mean "join only the pricey items but keep every order", and leave it in WHERE when you mean "only orders that have a pricey item".</p>
+        <p>The documentation also says its own step order is "purely illustrative": engines are free to execute in any order that gives the same result. Use the pipeline in the figure as a way to reason about where a filter applies, not as a claim about what the engine physically does first.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Undelivered is not late.</strong> In the real Olist sample, 59 orders never reached the customer. A dashboard that scores them as late and a dashboard that leaves them out report different on-time shares, 0.916 and 0.943, from identical data. Neither number is a typo. They answer different questions, and only one of them is the question asked. In a round, saying "undelivered orders are NULL here, and the question restricts to delivered, so I will filter them out" is the sentence that separates the two.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers thinking aloud while someone watches</span>
+      <h2>Solving it while someone watches</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A SQL round is not only a test of SQL. It is SQL done while a stranger watches and the clock runs, which is a different task from SQL at your desk. One small randomized trial measured how different, and its answer is a reason to change how you practise rather than a reason to worry.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two panels. Left, silent, in red: the room hears typing; six quiet minutes, then a number; a wrong number leaves no reasoning to credit; stuck reads as stopped. Right, narrated, outlined in cobalt: the room hears the checks; grain, ids, NULLs and range said first; a tiny case tested before the full run; stuck sounds like next I would check. Above the panels: Behroozi et al. 2020, watched against private whiteboard, 48 students, randomized.">
+        <defs>
+          <filter id="p3cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="57" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p3cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p3cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p3cH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p3cL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p3cS { font: 400 12px Inter, sans-serif; fill: #525C75; }
+          .p3cR { font: 800 12px Inter, sans-serif; fill: #991B1B; }
+          .p3cV { font: 800 12px Inter, sans-serif; fill: #1B3570; }
+          .p3cA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p3cN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p3cH" x="30" y="26">THE SAME QUERY, SILENT OR NARRATED</text>
+        <text class="p3cA" x="30" y="44">BEHROOZI ET AL. 2020 · WATCHED VS PRIVATE WHITEBOARD · 48 STUDENTS · RANDOMIZED</text>
+
+        <g filter="url(#p3cSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M800 30 Q822 14 844 30 Q822 46 800 30 Z" stroke-width="1.6"/>
+          <circle cx="822" cy="30" r="5" stroke-width="1.6"/>
+          <rect x="40" y="60" width="390" height="180" rx="12" transform="rotate(-0.4 235 150)" fill="#FEF2F2" stroke="#FCA5A5"/>
+          <rect x="450" y="60" width="390" height="180" rx="12" transform="rotate(0.4 645 150)" fill="#EEF2FA" stroke="#2A4FA0"/>
+        </g>
+
+        <text class="p3cR" x="58" y="94">Silent: the room hears typing</text>
+        <text class="p3cS" x="58" y="124">Six quiet minutes, then a number</text>
+        <text class="p3cS" x="58" y="148">A wrong number leaves no reasoning to credit</text>
+        <text class="p3cS" x="58" y="172">Stuck reads as stopped</text>
+        <text class="p3cS" x="58" y="196">Practised alone, at a desk</text>
+        <text class="p3cV" x="468" y="94">Narrated: the room hears the checks</text>
+        <text class="p3cS" x="468" y="124">Grain, ids, NULLs and range said first</text>
+        <text class="p3cS" x="468" y="148">A tiny case tested before the full run</text>
+        <text class="p3cS" x="468" y="172">Stuck sounds like "next I would check..."</text>
+        <text class="p3cL" x="468" y="196">Practised out loud, with someone watching</text>
+
+        <text class="p3cN" x="30" y="276">Being watched is the one condition you cannot remove, so practise inside it, out loud.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - narration turns the silent minutes into evidence the interviewer can score, right or wrong</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>What the trial did, and what it can and cannot tell you<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Behroozi, Shirolkar, Barik and Parnin (2020, ESEC/FSE)</strong> randomly assigned 48 computer science students to solve a technical problem on a whiteboard either privately or while an interviewer watched. Their abstract reports that "performance is reduced by more than half, by simply being watched by an interviewer". Only the abstract was read for this page.</p>
+        <p>Read it at its real size. It is one study, 48 people, students rather than working analysts, and a whiteboard problem rather than a SQL round. It does not tell you how much any particular interview costs you. What it does show, cleanly because it was randomized, is that being watched is not a neutral background: the same person, given the same kind of problem, does measurably worse with an audience. That is a practice problem, and practice problems have practice answers.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Practise the round in the condition it is held in<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>If watching changes performance, then practice done alone at a desk trains a slightly different skill from the one the round tests. Three moves close the gap. Practise with someone watching, even a friend who knows no SQL; a video call with the camera on is enough. Narrate the four checks every time, so that the first minute of a real round is a habit rather than a decision. And test on a tiny case first: before the full query, write the three-row example you expect, as in Part 1's toy, and say what it should return.</p>
+        <p>Narration also changes what the interviewer can score. A silent wrong answer is just wrong. A narrated wrong answer shows the four checks, the plan and the place it went off, and most rubrics have lines for reasoning as well as for the final number. How you sound while you do it, voice and pace and presence, is delivery, and <a href="https://phoebefu6.github.io/learn-public-speaking-with-phoebe/">Learn Public Speaking with Phoebe ↗</a> covers it.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>When you are stuck, say what you would check next<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Everyone stalls in a round at some point. Silence is the expensive version. The cheap version is one sentence: "I am not sure the join keeps one row per order, so next I would check the row count before and after the join." It tells the interviewer what you know, what you doubt and how you would find out, which is most of what an analyst does on a normal Tuesday.</p>
+        <p>Nerves in a round are real and are treated here as a workload and practice question: rehearsal in the watched condition, a fixed opening routine (the four checks), and fewer decisions left for the day. Nothing here is medical or clinical advice.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Half the performance, from one change in the room.</strong> The students in Behroozi and colleagues' trial were not given harder problems in the watched condition, or less time. The only thing that changed was a person standing there. Whatever interviewers do with that finding, the candidate's version is simple: if the audience is part of the test, the audience belongs in the practice.</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Six bench questions, four checks each, on paper</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">These are the six questions on the session 4 bench, as the bench words them. For each one, Ren says the four checks out loud, writes the answers in the margin, then writes a query on paper. Cover Ren's box and do yours first, out loud, ideally with someone listening. Do not run anything tonight: next session you type your paper queries into the bench and the checker tells you which ones match the reference, row by row.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 318" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A grid of the six bench questions against the four checks. Q1 orders by status: one row is a status, id order_id, NULL none expected, range all rows, any order. Q2 orders with an item over 100: one row is an order, not an item, highlighted as the trap; id order_id distinct; NULL check price; one number. Q3 on-time share: one row is a delivered order; id order_id; NULL in delivered_date, highlighted; 3 decimals. Q4 sellers with 5 or more items: one row is a seller over all items, highlighted; id seller_id; NULL check price; any order. Q5 orders per month 2017: one row is a month; id order_id; NULL none expected; 2017 half-open, highlighted. Q6 repeat customers: one row is a person; id customer_unique_id, highlighted; NULL none expected; one number.">
+        <defs>
+          <filter id="p3dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="61" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p3dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p3dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p3dH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p3dL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p3dS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p3dB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p3dA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p3dN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p3dH" x="30" y="26">SIX QUESTIONS, FOUR CHECKS: WHERE EACH PLANTED TRAP IS CAUGHT</text>
+        <text class="p3dA" x="30" y="56">QUESTION</text>
+        <text class="p3dA" x="238" y="56">1 · ONE ROW IS</text>
+        <text class="p3dA" x="388" y="56">2 · WHO IS IT</text>
+        <text class="p3dA" x="538" y="56">3 · WHERE NULL</text>
+        <text class="p3dA" x="688" y="56">4 · RANGE, ORDER</text>
+
+        <g filter="url(#p3dSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M846 20 L852 28 L866 12" stroke="#2A4FA0" stroke-width="2.2"/>
+          <rect x="30" y="66" width="200" height="30" rx="5" fill="#EEF2FA"/>
+          <rect x="30" y="102" width="200" height="30" rx="5" fill="#EEF2FA"/>
+          <rect x="30" y="138" width="200" height="30" rx="5" fill="#EEF2FA"/>
+          <rect x="30" y="174" width="200" height="30" rx="5" fill="#EEF2FA"/>
+          <rect x="30" y="210" width="200" height="30" rx="5" fill="#EEF2FA"/>
+          <rect x="30" y="246" width="200" height="30" rx="5" fill="#EEF2FA"/>
+          <rect x="238" y="66" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="388" y="66" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="538" y="66" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="688" y="66" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="238" y="102" width="146" height="30" rx="5" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="388" y="102" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="538" y="102" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="688" y="102" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="238" y="138" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="388" y="138" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="538" y="138" width="146" height="30" rx="5" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="688" y="138" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="238" y="174" width="146" height="30" rx="5" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="388" y="174" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="538" y="174" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="688" y="174" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="238" y="210" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="388" y="210" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="538" y="210" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="688" y="210" width="146" height="30" rx="5" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="238" y="246" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="388" y="246" width="146" height="30" rx="5" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="538" y="246" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+          <rect x="688" y="246" width="146" height="30" rx="5" fill="#FFFFFF" stroke-width="1.4"/>
+        </g>
+
+        <text class="p3dL" x="42" y="86">Q1 Orders by status</text>
+        <text class="p3dL" x="42" y="122">Q2 Order with item &gt; 100</text>
+        <text class="p3dL" x="42" y="158">Q3 On-time share</text>
+        <text class="p3dL" x="42" y="194">Q4 Sellers, 5+ items</text>
+        <text class="p3dL" x="42" y="230">Q5 Orders per month</text>
+        <text class="p3dL" x="42" y="266">Q6 Repeat customers</text>
+
+        <text class="p3dS" x="246" y="85">a status</text>
+        <text class="p3dS" x="396" y="85">order_id</text>
+        <text class="p3dS" x="546" y="85">none expected</text>
+        <text class="p3dS" x="696" y="85">all; any order</text>
+
+        <text class="p3dB" x="246" y="121">an order, not item</text>
+        <text class="p3dS" x="396" y="121">order_id, distinct</text>
+        <text class="p3dS" x="546" y="121">price: check</text>
+        <text class="p3dS" x="696" y="121">one number</text>
+
+        <text class="p3dS" x="246" y="157">a delivered order</text>
+        <text class="p3dS" x="396" y="157">order_id</text>
+        <text class="p3dB" x="546" y="157">delivered_date</text>
+        <text class="p3dS" x="696" y="157">3 decimals</text>
+
+        <text class="p3dB" x="246" y="193">seller, all items</text>
+        <text class="p3dS" x="396" y="193">seller_id</text>
+        <text class="p3dS" x="546" y="193">price: check</text>
+        <text class="p3dS" x="696" y="193">any order</text>
+
+        <text class="p3dS" x="246" y="229">a month of 2017</text>
+        <text class="p3dS" x="396" y="229">order_id</text>
+        <text class="p3dS" x="546" y="229">none expected</text>
+        <text class="p3dB" x="696" y="229">half-open, sorted</text>
+
+        <text class="p3dS" x="246" y="265">a person</text>
+        <text class="p3dB" x="396" y="265">customer_unique_id</text>
+        <text class="p3dS" x="546" y="265">none expected</text>
+        <text class="p3dS" x="696" y="265">one number</text>
+
+        <text class="p3dN" x="30" y="298">Coral = the check that catches that question's planted trap. Q1 has none; it is the warm-up.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - every trap on the bench sits in one of the four checks, so saying all four out loud catches all five</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Q1 · Count the orders in each status.</strong> The warm-up, and the place to make the four checks a habit while nothing is at stake. Two columns, status then count, one row per status. Say all four checks even though none of them bites.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · Ren's margin and query</span>1 one row of the answer = a status; orders is one row per order
+2 counting orders: order_id, no join needed
+3 NULL: status is not expected to be NULL; say so
+4 all orders, no row order asked
+
+SELECT status, COUNT(*) AS n_orders
+FROM orders
+GROUP BY status;</div>
+      </div>
+      <div class="step">
+        <p><strong>Q2 · How many orders include at least one item priced above 100?</strong> One number. The join to order_items changes the grain to items, so name that before you write the join, then write a second correct version so you have a check on the first.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · Ren's margin and query</span>1 answer = one number counting ORDERS; after the join one row = an ITEM
+2 order_id identifies the order; count it DISTINCT
+3 NULL: a NULL price fails "&gt; 100", which is fine here
+4 all orders; one number, no order
+
+SELECT COUNT(DISTINCT o.order_id) AS n_orders
+FROM orders o
+JOIN order_items i ON i.order_id = o.order_id
+WHERE i.price &gt; 100;
+
+-- second form, same answer expected:
+SELECT COUNT(*) FROM orders o
+WHERE EXISTS (SELECT 1 FROM order_items i
+              WHERE i.order_id = o.order_id AND i.price &gt; 100);</div>
+      </div>
+      <div class="step">
+        <p><strong>Q3 · Of the delivered orders, what share arrived on or before the estimated date? Round to 3 decimals.</strong> The question tells you the NULL rule in brackets: delivered means <code>delivered_date</code> is not NULL. Say where the NULLs are and what you will do with them before writing the CASE.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · Ren's margin and query</span>1 one row = a DELIVERED order; the denominator is delivered orders only
+2 order_id; no join
+3 NULL: delivered_date is NULL for undelivered orders; filter them out,
+  because CASE ... ELSE 0 would score them as late
+4 all delivered orders; one number, 3 decimals
+
+SELECT ROUND(AVG(CASE WHEN delivered_date &lt;= estimated_date
+                      THEN 1.0 ELSE 0.0 END), 3) AS on_time_share
+FROM orders
+WHERE delivered_date IS NOT NULL;</div>
+      </div>
+      <div class="step">
+        <p><strong>Q4 · Which sellers sold at least 5 items and have an average item price above 150?</strong> Return seller_id and the average rounded to 2 decimals. Say "average over all of the seller's items" out loud; it tells you the filter must wait until after the group exists.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · Ren's margin and query</span>1 one row = a seller; the average is over ALL their items
+2 seller_id, straight from order_items
+3 NULL: avg() skips NULL prices; say it, do not rely on it silently
+4 no range; no row order asked
+   both conditions are about the GROUP, so both go in HAVING, not WHERE
+
+SELECT seller_id, ROUND(AVG(price), 2) AS avg_price
+FROM order_items
+GROUP BY seller_id
+HAVING COUNT(*) &gt;= 5 AND AVG(price) &gt; 150;</div>
+      </div>
+      <div class="step">
+        <p><strong>Q5 · How many orders were placed in each month of 2017?</strong> Month as YYYY-MM and the count, in month order. Two of the four checks matter here: the range edge on a text timestamp, and a row order that is asked for.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · Ren's margin and query</span>1 one row = a month of 2017
+2 order_id; no join
+3 NULL: purchase_ts not expected to be NULL; say so
+4 range: purchase_ts is TEXT with a time, so half-open, not BETWEEN
+   order: ASKED, month ascending
+
+SELECT substr(purchase_ts, 1, 7) AS month, COUNT(*) AS n_orders
+FROM orders
+WHERE purchase_ts &gt;= '2017-01-01' AND purchase_ts &lt; '2018-01-01'
+GROUP BY month
+ORDER BY month;</div>
+      </div>
+      <div class="step">
+        <p><strong>Q6 · How many customers placed more than one order?</strong> One number. The word "customers" means people, and the schema note says which column is a person. This is the question where reading the schema for ten seconds is worth the whole round.</p>
+        <div class="prompt-box good"><span class="label">★ Step 6 · Ren's margin and query</span>1 answer = one number counting PEOPLE
+2 customer_id is issued per order; the person is customer_unique_id
+3 NULL: none expected in the ids; say so
+4 all orders; one number
+
+SELECT COUNT(*) AS repeat_customers
+FROM (SELECT c.customer_unique_id
+      FROM orders o
+      JOIN customers c ON c.customer_id = o.customer_id
+      GROUP BY c.customer_unique_id
+      HAVING COUNT(*) &gt; 1);</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Write your own before reading Ren's.</strong> Ren's queries are one correct shape each, not the only one; the bench accepts other correct forms too, such as EXISTS for Q2 or strftime for Q5. Keep your paper. In session 4 you type each query in, press Run and check, and see the reference result next to yours. The numbers belong to the bench, so run them there rather than taking anyone's word for them.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 4</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Finish all six queries on paper</strong>, each with its four checks in the margin, and bring them to session 4.</li>
+      <li><strong>Do one of the six out loud with someone watching</strong>, on a video call if needed. Note the moment you went quiet and what you would say there next time.</li>
+      <li><strong>Write a tiny test case for Q2</strong>: three orders, five item rows, as in Part 1's toy, and the result each of your two queries should return on it.</li>
+      <li><strong>Open the schema of one table you use at work</strong> and answer the four checks for it in one line each. If you cannot say what identifies a person, that is a question to ask at work tomorrow.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 3 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">1 · Ren joins orders to order_items, filters items priced above 100, and writes COUNT(*). The result is larger than the number of orders that qualify. Why?</p>
+      <button class="qopt" type="button">A · COUNT(*) skips NULL prices, which shifts the total</button>
+      <button class="qopt" type="button">B · The WHERE clause should have been a HAVING clause</button>
+      <button class="qopt" type="button">C · SQLite counts joined rows twice by default</button>
+      <button class="qopt" type="button">D · After the join one row is an item, so an order with several pricey items is counted once per item; COUNT(DISTINCT o.order_id) or EXISTS counts orders</button>
+      <p class="qwhy">The join changed the grain from orders to items. In the sample that turns the right 802 into the trap's 850. A is backwards: COUNT(*) counts rows, NULL or not. B confuses this with Q4, where the condition is on a group. C is not a rule; the join returns exactly one row per matching item.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">2 · Q3 asks for the on-time share of delivered orders, and 59 orders have a NULL delivered_date. What does CASE WHEN delivered_date &lt;= estimated_date THEN 1 ELSE 0 END inside AVG do to them, over all orders?</p>
+      <button class="qopt" type="button">A · AVG skips them, because avg() ignores NULL inputs</button>
+      <button class="qopt" type="button">B · The comparison with NULL is not true, so the CASE returns 0; every undelivered order counts as late and stays in the denominator</button>
+      <button class="qopt" type="button">C · The query fails with an error on the NULL comparison</button>
+      <button class="qopt" type="button">D · They count as on time, because NULL compares as the earliest date</button>
+      <p class="qwhy">avg() does skip NULL inputs, but this CASE never hands it a NULL: the ELSE branch turns each one into 0. That is how the trap reports 0.916 instead of 0.943. Filter with WHERE delivered_date IS NOT NULL, or let the undelivered rows produce NULL, and say which you chose.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">3 · What is the most useful reading of Behroozi and colleagues' 2020 trial for someone preparing a SQL round?</p>
+      <button class="qopt" type="button">A · Interviews cut every candidate's performance by more than half, so scores mean little</button>
+      <button class="qopt" type="button">B · It proves silent solving scores higher than thinking aloud</button>
+      <button class="qopt" type="button">C · In a small randomized trial with students, being watched more than halved whiteboard performance, so practise in the watched condition: out loud, with someone there, narrating the checks</button>
+      <button class="qopt" type="button">D · It is about anxiety disorders, so the fix is clinical</button>
+      <p class="qwhy">The trial is 48 students on a whiteboard problem, so it cannot put a number on any one interview, which rules out A. It compared watched with private solving, not silent with narrated, so B claims something it did not test. It is a practice finding, not a medical one, so D is wrong; the move is to rehearse in the condition the round is held in.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">SQLite documentation: lang_aggfunc.html, lang_select.html, nulls.html</span><span class="note">avg() over non-NULL values, count(X) vs count(*), sum vs total, WHERE drops false or NULL, HAVING once per group, one row without GROUP BY, outer-join NULL rows before WHERE, the "purely illustrative" order; read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Behroozi, Shirolkar, Barik and Parnin (2020), ESEC/FSE</span><span class="note">Randomized trial, 48 computer science students, private vs watched whiteboard; abstract read; small sample, students not hires</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Olist, Brazilian E-Commerce Public Dataset (Kaggle), CC BY-NC-SA 4.0</span><span class="note">The session 4 bench sample: 2,000 people, 2,085 orders, 2,359 items, 775 sellers; every trap number on this page is from the bench canon</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">SQL as a subject</span><span class="note">Joins, aggregation and window functions in depth live in <a href="https://phoebefu6.github.io/learn-sql-with-phoebe/">Learn SQL with Phoebe ↗</a>; here SQL is treated as an interview round</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Ren and Ren's margin notes</span><span class="note">Constructed for teaching; no real employer, process or question bank is described</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 3 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Four checks, out loud</b><span>One row is ... · the id is ... · NULL can appear in ... · range and order are ....</span></div>
+      <div class="cheat-item"><b>A join changes the grain</b><span>Orders joined to items is one row per item. Count orders with COUNT(DISTINCT) or EXISTS.</span></div>
+      <div class="cheat-item"><b>NULL in a CASE is not skipped</b><span>avg() skips NULL inputs, but ELSE 0 turns NULL into 0. Filter, or let it stay NULL.</span></div>
+      <div class="cheat-item"><b>WHERE rows, HAVING groups</b><span>A condition on an average belongs in HAVING. A WHERE on the right table undoes a LEFT JOIN.</span></div>
+      <div class="cheat-item"><b>Half-open ranges</b><span>&gt;= start AND &lt; next start. BETWEEN on text timestamps drops the last day.</span></div>
+      <div class="cheat-item"><b>Practise watched</b><span>Being watched more than halved performance in one small trial. Rehearse with an audience.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Ren has six queries on paper and four checks in every margin. Session 4 is the bench: type each query into a real database running in your browser, press Run and check, read the first row that differs when it fails, then load each planted trap and say out loud which line produced it.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 3 of 6 · learn-interview-prep-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="02-a-story-bank.html">← Prev: A story bank that covers the job</a> &nbsp;·&nbsp; <a href="04-the-practice-round-bench.html">Next: The practice-round bench →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=15"></script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Six sessions on the candidate side of data and AI interviews: reading a job description into competencies, a story bank that covers the job, the SQL round, a practice bench with six SQL questions run on real orders in your browser, the statistics and product case rounds, take-homes, the questions you ask and the review after. Free, by Phoebe Fu.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Learn Interview Prep with Phoebe">
+<meta property="og:description" content="Prepare for what the interview measures. Six sessions, one constructed candidate, a real SQL round in your browser and a story-bank coverage matrix that can report a worse number.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Learn Interview Prep with Phoebe">
+<meta name="twitter:description" content="The candidate side of data and AI interviews: competencies, stories, SQL on real rows, and the review after.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Learn Interview Prep with Phoebe</title>
+<link rel="stylesheet" href="assets/style.css?v=15">
+<style>
+
+  .stats-row { display: flex; gap: 2.4rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .stat b { display: block; font-size: 2.1rem; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: .72rem; opacity: 1; text-transform: uppercase; letter-spacing: .09em; font-weight: 600; }
+
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .course-card {
+    border: 1px solid var(--hairline);
+    border-top: 4px solid var(--diff, var(--indigo));
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: #fff;
+    transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+    position: relative;
+  }
+  .course-card:hover { border-color: var(--indigo-soft); border-top-color: var(--diff, var(--indigo)); box-shadow: 0 8px 28px rgba(var(--shadow-rgb),.16); transform: translateY(-3px); }
+  .course-card .cicon { font-size: 1.7rem; line-height: 1; }
+  .course-card .cnum { font-size: .72rem; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: .1em; }
+  .course-card h3 { font-size: 1.05rem; font-weight: 800; line-height: 1.3; }
+  .course-card p { font-size: .85rem; color: var(--muted); flex: 1; }
+  .course-card .meta { display: flex; gap: .4rem; flex-wrap: wrap; }
+
+  .diff-legend { display: flex; gap: 1rem; margin-top: 1.6rem; font-size: .74rem; color: var(--muted); font-weight: 600; flex-wrap: wrap; }
+  .diff-legend i { display: inline-block; width: .85rem; height: .35rem; border-radius: 999px; margin-right: .35rem; vertical-align: middle; }
+
+  .paths { margin-top: 2.6rem; }
+  .paths h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .3rem; }
+  .paths .plede { color: var(--muted); font-size: .92rem; margin-bottom: .8rem; }
+  .path { display: flex; gap: .55rem; align-items: center; padding: .75rem 0; border-bottom: .5px solid var(--hairline); flex-wrap: wrap; }
+  .path:last-child { border-bottom: none; }
+  .path b { min-width: 15.5rem; font-size: .9rem; }
+  .path .pstep { background: var(--indigo-50); color: var(--indigo); border-radius: 999px; padding: .16rem .68rem; font-weight: 700; font-size: .8rem; text-decoration: none; transition: all .12s ease; }
+  .path .pstep:hover { background: var(--indigo); color: #fff; }
+  .path .parr { color: var(--muted); font-weight: 700; }
+
+  .mm-section { margin-top: 1.6rem; }
+  .mm-section h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .2rem; }
+  .mm-section .mm-lede { color: var(--muted); font-size: .92rem; margin-bottom: .4rem; }
+  .mm-wrap { border: 1px solid var(--hairline); border-radius: var(--radius); background: linear-gradient(180deg,#fff,var(--indigo-50)); padding: .6rem; overflow-x: auto; }
+  .mm-svg { width: 100%; height: auto; display: block; max-width: 60rem; margin: 0 auto; min-width: 34rem; }
+  .mm-link { cursor: pointer; text-decoration: none; }
+  .mm-node rect { transition: opacity .15s ease, filter .15s ease; }
+  .mm-node text { pointer-events: none; }
+  .mm-link:hover .mm-node rect { filter: brightness(1.06); }
+  .mm-edge { transition: opacity .15s ease; }
+
+  .not-this { border: 1px solid var(--hairline); border-left: 4px solid var(--clay); border-radius: var(--radius); background: #fff; padding: 1.1rem 1.3rem; margin-top: 1.2rem; }
+  .not-this h3 { font-size: .95rem; font-weight: 800; margin-bottom: .5rem; }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn with Phoebe · Leadership and career</div>
+    <h1>Learn <span class="accent">Interview Prep</span> with Phoebe</h1>
+    <p class="sub">The candidate side of data and AI interviews. An interview loop is a set of measurements, and the job description says what each round is measuring. Six sessions on preparing for exactly that: reading the job into competencies, building a story bank that covers them, the SQL round and its traps, the statistics and product case rounds, take-home assignments, the questions you ask, and a review after every round. One constructed candidate, Ren, an analyst moving into data science, and one bench: six SQL questions run for real in your browser on 2,085 orders, and a story-bank coverage matrix.</p>
+    <div class="stats-row">
+      <div class="stat"><b data-count="6">6</b><span>sessions</span></div>
+      <div class="stat"><b data-count="2085">2,085</b><span>real orders on the bench</span></div>
+      <div class="stat"><b data-count="5">5</b><span>planted SQL traps</span></div>
+      <div class="stat"><b data-count="8">8</b><span>stories in Ren's bank</span></div>
+      <div class="stat"><b data-count="45">45</b><span>min per session</span></div>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>The six sessions 🧭 <span style="font-size:.85rem;font-weight:600;color:var(--muted)">· from the job description to the review after the last round</span></h2>
+      <p class="plede">The running case is <strong>Ren, a constructed analyst</strong> with three years of dashboards, SQL and A/B test readouts, applying for a first data scientist role in product analytics. Ren, both job descriptions and every story are invented for teaching, and every page says so. No real employer's process is described, and nothing here is about pay.</p>
+    </div>
+    <div class="course-grid">
+      <a class="course-card" href="courses/01-what-the-interview-measures.html" style="--diff:#34D399">
+        <span class="cicon">🔎</span>
+        <span class="cnum">Session 1 · foundations</span>
+        <h3>What the interview is actually measuring</h3>
+        <p>A loop as a set of measurements, what selection research says structured interviews predict and where it disagrees, what structure means from the candidate's chair, and a job description read into a prep plan.</p>
+        <span class="meta"><span class="pill amber">▶ Start here</span></span>
+      </a>
+      <a class="course-card" href="courses/02-a-story-bank.html" style="--diff:#FBBF24">
+        <span class="cicon">🗂️</span>
+        <span class="cnum">Session 2 · core</span>
+        <h3>A story bank that covers the job</h3>
+        <p>Past-behaviour questions, STAR and where it comes from, eight stories tagged against every competency they honestly evidence, trimmed to finish, and told without overselling.</p>
+        <span class="meta"><span class="pill">STAR, tagged</span></span>
+      </a>
+      <a class="course-card" href="courses/03-the-sql-round.html" style="--diff:#FBBF24">
+        <span class="cicon">🧮</span>
+        <span class="cnum">Session 3 · core</span>
+        <h3>The SQL round</h3>
+        <p>Read the question before typing: the grain of a join, NULLs in an average, WHERE against HAVING, date ranges, the id that is not a person. And thinking aloud while someone watches.</p>
+        <span class="meta"><span class="pill">four checks first</span></span>
+      </a>
+      <a class="course-card" href="courses/04-the-practice-round-bench.html" style="--diff:#F87171">
+        <span class="cicon">⏱️</span>
+        <span class="cnum">Session 4 · bench night</span>
+        <h3>The practice-round bench</h3>
+        <p>Six SQL questions on real orders with a strict checker that prints the first wrong row, then Ren's story bank against a job description, the one-story anti-lever and a break button.</p>
+        <span class="meta"><span class="pill amber">★ the bench</span></span>
+      </a>
+      <a class="course-card" href="courses/05-stats-and-the-product-case.html" style="--diff:#FB923C">
+        <span class="cicon">📈</span>
+        <span class="cnum">Session 5 · deeper</span>
+        <h3>Stats, experiments and the product case</h3>
+        <p>A p-value explained in one sentence, why stopping a test early is unreliable, designing an experiment out loud, choosing a metric and estimating a number in a product case.</p>
+        <span class="meta"><span class="pill">reasoning out loud</span></span>
+      </a>
+      <a class="course-card" href="courses/06-take-homes-and-the-review.html" style="--diff:#FB923C">
+        <span class="cicon">📝</span>
+        <span class="cnum">Session 6 · deeper</span>
+        <h3>Take-homes, your questions, and the review after</h3>
+        <p>A time-boxed take-home with its assumptions written down, the questions worth asking and when, and a review after every round that feeds the bank and the drill list.</p>
+        <span class="meta"><span class="pill amber">🔁 the review</span></span>
+      </a>
+    </div>
+    <div class="diff-legend">
+      <span><i style="background:#34D399"></i>foundations</span>
+      <span><i style="background:#FBBF24"></i>core</span>
+      <span><i style="background:#FB923C"></i>deeper</span>
+      <span><i style="background:#F87171"></i>bench night</span>
+    </div>
+  </section>
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>Your passport 🎫</h2>
+      <p class="plede">Clear all three quiz questions in a session and it gets stamped. Six stamps means you can read a job into competencies, tell a tagged story bank, catch the common SQL traps, practise against a strict checker, reason through a statistics question and a product case, and run a take-home and a review. Stamps live in this browser only.</p>
+    </div>
+    <div class="pp-strip"></div>
+  </section>
+  <section class="section">
+    <div class="not-this">
+      <h3>What this is not, so you land in the right place 🧭</h3>
+      <table class="clean">
+        <tr><th>If your question is</th><th>Go here instead</th></tr>
+        <tr><td>How do I run structured interviews and calibrate a hiring panel?</td><td><a href="https://phoebefu6.github.io/learn-ai-hr-with-phoebe/courses/b5-structured-interviews.html">AI + HR, Structured interviews ↗</a></td></tr>
+        <tr><td>How do I build a reputation and a visible portfolio?</td><td><a href="https://phoebefu6.github.io/learn-personal-branding-with-phoebe/">Personal Branding ↗</a></td></tr>
+        <tr><td>How do I learn SQL, statistics or product analytics properly?</td><td><a href="https://phoebefu6.github.io/learn-sql-with-phoebe/">SQL ↗</a> · <a href="https://phoebefu6.github.io/learn-statistics-with-phoebe/">Statistics ↗</a> · <a href="https://phoebefu6.github.io/learn-product-analytics-with-phoebe/">Product Analytics ↗</a></td></tr>
+        <tr><td>How do I speak with presence on the day?</td><td><a href="https://phoebefu6.github.io/learn-public-speaking-with-phoebe/">Public Speaking ↗</a></td></tr>
+        <tr><td><strong>I have a data or AI interview coming and want to prepare for what it actually measures.</strong></td><td><strong>you are in the right place</strong></td></tr>
+      </table>
+      <p style="margin-top:.7rem;font-size:.86rem;color:var(--muted)"><strong>A note on nerves.</strong> Interviews are stressful, and parts of these sessions are about planning the workload so stress has less to feed on. Nothing here is medical or clinical advice; the body side of stress belongs to the planned move-shelf courses on the hub.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="paths">
+      <h2>Choose your path 🗺️</h2>
+      <p class="plede">Three doors into the same habit: find out what is measured, then prepare evidence for it.</p>
+      <div class="path"><b>📅 My loop is next week</b>
+        <a class="pstep" href="courses/01-what-the-interview-measures.html">1</a><span class="parr">→</span>
+        <a class="pstep" href="courses/02-a-story-bank.html">2</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-practice-round-bench.html">4</a>
+        <span style="font-size:.82rem;color:var(--muted)">read the job, build the bank, practise against the bench</span>
+      </div>
+      <div class="path"><b>🧮 The technical rounds scare me</b>
+        <a class="pstep" href="courses/03-the-sql-round.html">3</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-practice-round-bench.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-stats-and-the-product-case.html">5</a>
+        <span style="font-size:.82rem;color:var(--muted)">traps, real rows, then the reasoning rounds</span>
+      </div>
+      <div class="path"><b>🧭 The whole preparation</b>
+        <a class="pstep" href="courses/01-what-the-interview-measures.html">1</a><span class="parr">→</span>
+        <a class="pstep" href="courses/02-a-story-bank.html">2</a><span class="parr">→</span>
+        <a class="pstep" href="courses/03-the-sql-round.html">3</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-practice-round-bench.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-stats-and-the-product-case.html">5</a><span class="parr">→</span>
+        <a class="pstep" href="courses/06-take-homes-and-the-review.html">6</a>
+        <span style="font-size:.82rem;color:var(--muted)">from the job description to the review after the last round</span>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>What is honest here 🧾</h2>
+      <p class="plede">Interview advice travels with famous numbers, and some of them do not come from where they are said to. Each claim on these pages carries its status.</p>
+    </div>
+    <table class="clean">
+      <tr><th>Claim</th><th>Status</th></tr>
+      <tr><td>Every SQL result on the bench</td><td><strong>Really computed</strong> in your browser by SQLite on a seeded sample of the Olist e-commerce dataset (CC BY-NC-SA 4.0), and checked against an independent Python run</td></tr>
+      <tr><td>Story-bank coverage numbers</td><td><strong>Constructed inputs, real arithmetic.</strong> Ren's stories and fits are invented; the scoring rule is printed on the widget</td></tr>
+      <tr><td>"Structured interviews predict performance better than unstructured ones"</td><td><strong>Read at source</strong> in both the 1998 and 2022 estimates; how far the numbers should be corrected is <strong>contested</strong>, and session 1 teaches the disagreement</td></tr>
+      <tr><td>"Interviewers decide in the first four minutes"</td><td><strong>Not what the study found.</strong> Session 1 traces it</td></tr>
+      <tr><td>STAR was invented by one firm in 1974</td><td><strong>A company's own claim,</strong> with no independent history found; session 2 says so</td></tr>
+      <tr><td>Keep every answer under two minutes; take-homes predict performance</td><td><strong>No study found</strong> for either; taught as practice, never as findings</td></tr>
+    </table>
+  </section>
+  <section class="section mm-section">
+    <h2>The knowledge map 🧠</h2>
+    <p class="mm-lede">The whole path at a glance - hover a session to spotlight its concepts, click any node to jump in.</p>
+    <div class="mm-wrap"><div id="mindmap"></div></div>
+  </section>
+  <footer class="pagefoot">
+    <span>learn-interview-prep-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span>Neighbours on the shelf: <a href="https://phoebefu6.github.io/learn-ai-hr-with-phoebe/">AI + HR ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-personal-branding-with-phoebe/">Personal Branding ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-public-speaking-with-phoebe/">Public Speaking ↗</a></span>
+  </footer>
+</main>
+<script>
+window.MINDMAP_DATA = {
+ "title": "Interview\nPrep",
+ "centerColor": "#1B3570",
+ "sessions": [
+  {
+   "label": "What the interview\nis measuring",
+   "href": "courses/01-what-the-interview-measures.html",
+   "color": "#34D399",
+   "concepts": [
+    {
+     "label": "Competencies, not rounds",
+     "href": "courses/01-what-the-interview-measures.html"
+    },
+    {
+     "label": "Structured vs unstructured",
+     "href": "courses/01-what-the-interview-measures.html"
+    },
+    {
+     "label": "Read the job into a plan",
+     "href": "courses/01-what-the-interview-measures.html"
+    }
+   ]
+  },
+  {
+   "label": "A story bank that\ncovers the job",
+   "href": "courses/02-a-story-bank.html",
+   "color": "#FBBF24",
+   "concepts": [
+    {
+     "label": "Past behaviour, STAR",
+     "href": "courses/02-a-story-bank.html"
+    },
+    {
+     "label": "Tag every honest fit",
+     "href": "courses/02-a-story-bank.html"
+    },
+    {
+     "label": "Trim to finish",
+     "href": "courses/02-a-story-bank.html"
+    }
+   ]
+  },
+  {
+   "label": "The SQL\nround",
+   "href": "courses/03-the-sql-round.html",
+   "color": "#FBBF24",
+   "concepts": [
+    {
+     "label": "Grain before aggregate",
+     "href": "courses/03-the-sql-round.html"
+    },
+    {
+     "label": "NULLs and HAVING",
+     "href": "courses/03-the-sql-round.html"
+    },
+    {
+     "label": "Think aloud, watched",
+     "href": "courses/03-the-sql-round.html"
+    }
+   ]
+  },
+  {
+   "label": "The practice-round\nbench",
+   "href": "courses/04-the-practice-round-bench.html",
+   "color": "#F87171",
+   "concepts": [
+    {
+     "label": "Six questions, real rows",
+     "href": "courses/04-the-practice-round-bench.html"
+    },
+    {
+     "label": "Coverage ladder",
+     "href": "courses/04-the-practice-round-bench.html"
+    },
+    {
+     "label": "One story stretched: anti",
+     "href": "courses/04-the-practice-round-bench.html"
+    }
+   ]
+  },
+  {
+   "label": "Stats, experiments,\nproduct case",
+   "href": "courses/05-stats-and-the-product-case.html",
+   "color": "#FB923C",
+   "concepts": [
+    {
+     "label": "A p-value in a sentence",
+     "href": "courses/05-stats-and-the-product-case.html"
+    },
+    {
+     "label": "Stopping early",
+     "href": "courses/05-stats-and-the-product-case.html"
+    },
+    {
+     "label": "Metric and estimate",
+     "href": "courses/05-stats-and-the-product-case.html"
+    }
+   ]
+  },
+  {
+   "label": "Take-homes, questions,\nreview",
+   "href": "courses/06-take-homes-and-the-review.html",
+   "color": "#FB923C",
+   "concepts": [
+    {
+     "label": "Time-box the take-home",
+     "href": "courses/06-take-homes-and-the-review.html"
+    },
+    {
+     "label": "Questions you ask",
+     "href": "courses/06-take-homes-and-the-review.html"
+    },
+    {
+     "label": "Review every round",
+     "href": "courses/06-take-homes-and-the-review.html"
+    }
+   ]
+  }
+ ]
+};
+</script>
+<script src="assets/mindmap.js?v=1"></script>
+<script src="assets/app.js?v=15"></script>
+</body>
+</html>

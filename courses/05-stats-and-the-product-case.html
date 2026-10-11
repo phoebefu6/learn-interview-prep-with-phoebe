@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 5 of 6. The statistics round and the product case, as rounds. Explain a p-value in one sentence the ASA statement would accept, design and stop an experiment out loud without peeking, choose a primary metric with guardrails and a counter-metric, and estimate with stated assumptions. Worked end to end on a constructed skip-a-week case.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Stats, experiments and the product case - learn interview prep with phoebe">
+<meta property="og:description" content="Session 5 of 6. One-sentence p-values, experiments decided in advance, metrics with guardrails, and estimation you can check out loud.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/courses/05-stats-and-the-product-case.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stats, experiments and the product case - learn interview prep with phoebe">
+<meta name="twitter:description" content="Session 5 of 6. Say what a p-value is, decide the end date first, and pick a metric that cannot be gamed.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 5 · Stats, experiments and the product case - learn interview prep with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=15">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-interview-prep-with-phoebe</a> / Session 5 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Interview Prep with Phoebe · Session 5 of 6</div>
+    <h1>Stats, experiments and the <span class="accent">product case</span></h1>
+    <p class="sub">The statistics round and the product case are where data candidates who know the material still lose points, because the round is not asking whether you know statistics. It is asking whether you can say the right thing, in the right order, out loud, with someone writing it down. Tonight we practise three spoken moves: a one-sentence p-value an interviewer will accept, an experiment designed and stopped by rules you set before it starts, and a product case answered with one primary metric, its guardrails and an estimate whose assumptions you state as you go. Then we work a full case end to end.</p>
+    <div class="chip-row">
+      <span class="chip level">🟠 Deeper</span>
+      <span class="chip audience">Anyone with a stats, experiment or product case round in the loop</span>
+      <span class="chip audience">Bring a pen and a calculator</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · P-values, tests, cases</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: the skip-a-week case</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Ren, our constructed analyst, rated "experiment design and statistics" and "metric choice" as thin back in session 1, and the session 4 bench confirmed the story bank leans on one experiment story, S2 "The A/B test that was stopped early". Tonight Ren turns those thin ratings into answers that hold up in the room. Nothing here re-teaches statistics or product analytics as subjects; their own courses do that. Here they are rounds, and a round rewards the candidate who says the careful thing first.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = write it yourself</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A one-sentence p-value you can say without hedging, a five-line experiment plan you can recite (unit, primary metric, guardrails, sample size, end date), a habit of naming a counter-metric before anyone asks, an estimation routine with the arithmetic shown, and a complete worked product case with a 30-second summary.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers explaining a p-value in an interview</span>
+      <h2>A p-value is a tail area, not a verdict</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">"What is a p-value?" is one of the most common statistics questions in a data interview, and it is a trap only because the two most natural answers are wrong. In March 2016 the American Statistical Association published a statement of six principles on p-values, written precisely because those wrong answers had become normal in published research. If your answer agrees with that statement, no interviewer can mark it down.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 362" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A bell-shaped curve labelled the no-effect model, centred on zero difference. A dashed vertical line marks the observed result to the right of centre, and the small area under the curve beyond that line is shaded coral and labelled p-value equals this area. Caption under the curve: how surprising the data are if there were no effect. On the right, a blue box gives the one-sentence answer, and a red box lists two readings it is not: the chance the hypothesis is true, and the chance the result was luck alone.">
+        <defs>
+          <filter id="p5aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="51" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p5aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p5aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p5aH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p5aL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p5aS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p5aB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p5aR { font: 800 12px Inter, sans-serif; fill: #991B1B; }
+          .p5aA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p5aN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p5aH" x="30" y="26">WHAT A P-VALUE IS: A TAIL AREA UNDER THE NO-EFFECT CURVE</text>
+        <text class="p5aA" x="50" y="56">IF THERE WERE NO EFFECT (THE NULL MODEL)</text>
+
+        <g filter="url(#p5aSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M450 260 L450 237.0 L457 241.3 L464 244.9 L471 247.9 L478 250.5 L485 252.5 L492 254.2 L499 255.6 L506 256.6 L513 257.5 L520 258.1 L527 258.6 L534 259.0 L541 259.3 L548 259.5 L555 259.6 L555 260 Z" fill="#C2453A" stroke="#C2453A"/>
+          <path d="M65 259.6 L72 259.5 L79 259.3 L86 259.0 L93 258.6 L100 258.1 L107 257.5 L114 256.6 L121 255.6 L128 254.2 L135 252.5 L142 250.5 L149 247.9 L156 244.9 L163 241.3 L170 237.0 L177 232.0 L184 226.4 L191 219.9 L198 212.7 L205 204.8 L212 196.2 L219 187.0 L226 177.3 L233 167.2 L240 156.9 L247 146.6 L254 136.6 L261 126.9 L268 118.0 L275 110.0 L282 103.1 L289 97.5 L296 93.4 L303 90.8 L310 90.0 L317 90.8 L324 93.4 L331 97.5 L338 103.1 L345 110.0 L352 118.0 L359 126.9 L366 136.6 L373 146.6 L380 156.9 L387 167.2 L394 177.3 L401 187.0 L408 196.2 L415 204.8 L422 212.7 L429 219.9 L436 226.4 L443 232.0 L450 237.0 L457 241.3 L464 244.9 L471 247.9 L478 250.5 L485 252.5 L492 254.2 L499 255.6 L506 256.6 L513 257.5 L520 258.1 L527 258.6 L534 259.0 L541 259.3 L548 259.5 L555 259.6"/>
+          <path d="M50 260 L570 260"/>
+          <path d="M310 256 L310 266" stroke-width="1.4"/>
+          <path d="M450 72 L450 262" stroke-dasharray="6 5" stroke-width="1.6"/>
+          <path d="M500 220 L496 248" marker-end="url(#p5aAr)" stroke-width="1.6"/>
+          <circle cx="532" cy="160" r="13" stroke-width="1.8"/>
+          <path d="M541 170 L554 184" stroke-width="2.4"/>
+          <rect x="600" y="62" width="250" height="112" rx="10" transform="rotate(0.4 725 118)" fill="#EEF2FA" stroke="#2A4FA0"/>
+          <rect x="600" y="192" width="250" height="116" rx="10" transform="rotate(-0.4 725 250)" fill="#FEF2F2" stroke="#FCA5A5"/>
+        </g>
+
+        <text class="p5aL" x="450" y="66" text-anchor="middle">observed result</text>
+        <text class="p5aB" x="462" y="212">p-value = this area</text>
+        <text class="p5aS" x="310" y="280" text-anchor="middle">0 = no difference</text>
+        <text class="p5aS" x="560" y="280" text-anchor="end">bigger differences</text>
+        <text class="p5aA" x="310" y="302" text-anchor="middle">how surprising the data are if there were no effect</text>
+
+        <text class="p5aH" x="616" y="86">THE ONE-SENTENCE ANSWER</text>
+        <text class="p5aS" x="616" y="110">The probability of data at least this</text>
+        <text class="p5aS" x="616" y="128">extreme, if there were no real effect</text>
+        <text class="p5aS" x="616" y="146">and the model's assumptions held.</text>
+        <text class="p5aL" x="616" y="164">Small p: these data sit badly with it.</text>
+
+        <text class="p5aR" x="616" y="216">TWO READINGS IT IS NOT</text>
+        <text class="p5aS" x="616" y="240">NOT the probability that the</text>
+        <text class="p5aS" x="616" y="256">hypothesis is true</text>
+        <text class="p5aS" x="616" y="278">NOT the probability that the result</text>
+        <text class="p5aS" x="616" y="294">was produced by chance alone</text>
+
+        <text class="p5aN" x="30" y="340">ASA (2016) principles 1 and 2. The shaded area says how unusual the data are, not how big the effect is.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the p-value lives under the no-effect curve; it describes the data assuming no effect, never the hypothesis</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>The one-sentence answer, and what to add<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Say this:</strong> "A p-value is the probability of seeing data at least as extreme as what we observed, if there were really no effect and the model's assumptions held. A small one means the data are hard to square with no effect." That is the ASA's first principle in spoken form: p-values "can indicate how incompatible the data are with a specified statistical model".</p>
+        <p><strong>Then add one of the other principles,</strong> unprompted. The strongest in an interview is principle 5: a p-value does not measure the size of an effect or the importance of a result. Follow it with what you would report instead: "so I would always report the effect size with a confidence interval, and ask whether that size matters for the product." Principle 3 is the next best: decisions should not be based only on whether a p-value passes a threshold. One extra principle shows you know the statement exists; reciting all six sounds memorised.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The two most common wrong answers<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>"It's the probability the hypothesis is true."</strong> The p-value is computed by assuming there is no effect, so it cannot also be the probability that there is one. The ASA's second principle says p-values do not measure the probability that the studied hypothesis is true.</p>
+        <p><strong>"It's the probability the result was due to chance."</strong> This one sounds careful, which is why it survives. The same second principle rules it out: p-values do not measure the probability that the data were produced by random chance alone. The difference is the direction of the condition. The p-value is "probability of data this extreme, given no effect", not "probability of no effect, given these data". If an interviewer pushes, saying exactly that sentence about direction is the answer they are hoping to hear.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>All six principles, in plain words<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The ASA Statement on Statistical Significance and P-Values was released on 7 March 2016 (Wasserstein and Lazar, The American Statistician). Its six principles, paraphrased closely from the ASA's release:</p>
+        <ol>
+          <li>P-values can indicate how incompatible the data are with a specified statistical model.</li>
+          <li>P-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.</li>
+          <li>Scientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.</li>
+          <li>Proper inference requires full reporting and transparency.</li>
+          <li>A p-value, or statistical significance, does not measure the size of an effect or the importance of a result.</li>
+          <li>By itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.</li>
+        </ol>
+        <p><strong>Effect size is not significance.</strong> With enough users, a difference too small to matter will come out with a tiny p-value; with too few, a difference worth a lot can come out with a large one. That is principle 5 at work, and it is why every experiment readout in the build-along reports the size of the change and a decision rule, not a pass or fail. For the mathematics behind all of this, <a href="https://phoebefu6.github.io/learn-statistics-with-phoebe/">Learn Statistics with Phoebe ↗</a> owns the subject.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The readout that said "proven".</strong> A pattern most analysts have seen in a slide deck: "the new checkout is proven to work, p = 0.03". Two principles are broken in five words. The p-value did not prove anything about the hypothesis (principle 2), and the slide says nothing about how big the improvement was (principle 5). In an interview, being able to say calmly why that sentence is wrong, and rewrite it as "the data are unlikely under no effect; the estimated lift is X, with this interval", is worth more than any formula.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers designing and stopping an experiment out loud</span>
+      <h2>Decide how it ends before it starts</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">"How would you test this?" is the experiment round in one question. The interviewer is listening for a short list of decisions made in a particular order: what gets randomised, which one number decides, what must not get worse, how many users and how long, and when you will look. The last one is where strong candidates separate themselves, because the most common way to break a valid A/B test is to keep checking it and stop the moment it looks good.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 398" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two lanes showing the same fourteen constructed daily readings of a test's p-value against a .05 line. Top lane, red, stop when green: the analyst checks daily, the reading dips under .05 on day 4, and the test is stopped and shipped there; the later readings drift back above the line. Bottom lane, blue, fix the end first: daily looks are for broken data only, and the result is read once on day 14 as planned, above the line.">
+        <defs>
+          <filter id="p5bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="53" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p5bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p5bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p5bH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p5bL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p5bS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p5bB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p5bR { font: 800 12px Inter, sans-serif; fill: #991B1B; }
+          .p5bD { font: 800 12px Inter, sans-serif; fill: #1B3570; }
+          .p5bA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p5bN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p5bH" x="30" y="26">SAME TEST, TWO STOPPING RULES (CONSTRUCTED DAILY READINGS)</text>
+
+        <g filter="url(#p5bSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="46" width="800" height="140" rx="12" transform="rotate(-0.3 440 116)" fill="#FEF2F2" stroke="#FCA5A5"/>
+          <rect x="40" y="202" width="800" height="140" rx="12" transform="rotate(0.3 440 272)" fill="#EEF2FA" stroke="#2A4FA0"/>
+          <path d="M192 140 L806 140" stroke-dasharray="5 5" stroke-width="1.3" stroke="#525C75"/>
+          <path d="M192 296 L806 296" stroke-dasharray="5 5" stroke-width="1.3" stroke="#525C75"/>
+          <path d="M200 100 L246 118 L292 130 L338 148" stroke-width="1.6"/>
+          <path d="M338 148 L384 128 L430 112 L476 120 L522 106 L568 116 L614 124 L660 110 L706 118 L752 114 L798 120" stroke-width="1.2" stroke="#C5CDDD" stroke-dasharray="3 4"/>
+          <circle cx="200" cy="100" r="5" fill="#FFFFFF"/>
+          <circle cx="246" cy="118" r="5" fill="#FFFFFF"/>
+          <circle cx="292" cy="130" r="5" fill="#FFFFFF"/>
+          <circle cx="338" cy="148" r="7" fill="#C2453A" stroke="#8E2A22"/>
+          <circle cx="384" cy="128" r="4" stroke="#C5CDDD"/>
+          <circle cx="430" cy="112" r="4" stroke="#C5CDDD"/>
+          <circle cx="476" cy="120" r="4" stroke="#C5CDDD"/>
+          <circle cx="522" cy="106" r="4" stroke="#C5CDDD"/>
+          <circle cx="568" cy="116" r="4" stroke="#C5CDDD"/>
+          <circle cx="614" cy="124" r="4" stroke="#C5CDDD"/>
+          <circle cx="660" cy="110" r="4" stroke="#C5CDDD"/>
+          <circle cx="706" cy="118" r="4" stroke="#C5CDDD"/>
+          <circle cx="752" cy="114" r="4" stroke="#C5CDDD"/>
+          <circle cx="798" cy="120" r="4" stroke="#C5CDDD"/>
+          <path d="M200 256 L246 274 L292 286 L338 304 L384 284 L430 268 L476 276 L522 262 L568 272 L614 280 L660 266 L706 274 L752 270 L798 276" stroke-width="1.2" stroke="#C5CDDD"/>
+          <circle cx="200" cy="256" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="246" cy="274" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="292" cy="286" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="338" cy="304" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="384" cy="284" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="430" cy="268" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="476" cy="276" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="522" cy="262" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="568" cy="272" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="614" cy="280" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="660" cy="266" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="706" cy="274" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="752" cy="270" r="4" stroke="#C5CDDD" fill="#FFFFFF"/>
+          <circle cx="798" cy="276" r="7" fill="#2A4FA0" stroke="#1B3570"/>
+          <path d="M146 130 Q164 118 182 130 Q164 142 146 130 Z" stroke-width="1.6"/>
+          <circle cx="164" cy="130" r="3.5" fill="#18203A" stroke="none"/>
+        </g>
+
+        <text class="p5bR" x="58" y="76">Stop when green</text>
+        <text class="p5bS" x="58" y="96">checked daily,</text>
+        <text class="p5bS" x="58" y="112">stopped on day 4</text>
+        <text class="p5bS" x="200" y="72">each dot = one daily look at the p-value</text>
+        <text class="p5bA" x="814" y="144">.05</text>
+        <text class="p5bB" x="350" y="176">day 4: dipped under .05, stopped and shipped</text>
+
+        <text class="p5bD" x="58" y="232">Fix the end first</text>
+        <text class="p5bS" x="58" y="252">sample size and</text>
+        <text class="p5bS" x="58" y="268">end date set</text>
+        <text class="p5bS" x="58" y="284">before launch</text>
+        <text class="p5bS" x="200" y="228">daily looks for broken data only, no decision</text>
+        <text class="p5bA" x="814" y="300">.05</text>
+        <text class="p5bL" x="786" y="328" text-anchor="end">day 14: read once, as planned</text>
+
+        <text class="p5bS" x="200" y="360" text-anchor="middle">day 1</text>
+        <text class="p5bS" x="476" y="360" text-anchor="middle">day 7</text>
+        <text class="p5bS" x="798" y="360" text-anchor="middle">day 14</text>
+        <text class="p5bN" x="30" y="386">Lower on the chart = smaller p. Constructed readings; your numbers will differ.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - with daily looks and a stop-on-green rule, the dip on day 4 becomes a launch; with the end date fixed, it is just day 4</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Five decisions, said in this order<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>1. Unit of randomisation.</strong> Who gets assigned to a version: a user, an account, a session, a store. Choose the unit the change acts on, and say why. If one person can see both versions, say how you would stop that.</p>
+        <p><strong>2. One primary metric.</strong> The single number that decides. Naming two primary metrics is naming none, because one of them will move by chance.</p>
+        <p><strong>3. Guardrails.</strong> Two or three numbers that must not get meaningfully worse, even if the primary improves: support contacts, latency, cancellations, revenue proxies.</p>
+        <p><strong>4. Sample size and duration, decided in advance.</strong> From a baseline rate, the smallest change worth acting on, and the error rates you accept. Round the duration up to whole weeks so weekdays and weekends are both in it.</p>
+        <p><strong>5. When you will look.</strong> "I would read it once, at the end date, and only look before then to check the data are flowing and the split is even." That sentence is the one interviewers remember.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Why peeking breaks the test<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A standard p-value assumes the sample size was fixed before anyone looked. Check every day and stop the first time it dips under .05, and you have given chance fourteen tries to cross the line instead of one. Even with no real effect, a reading that wanders will cross it sometimes, and the stop-on-green rule turns that one crossing into a launch.</p>
+        <p><strong>Johari, Pekelis and Walsh (2015, arXiv 1512.04922)</strong> put it bluntly in their abstract: standard p-values and confidence intervals are “wholly unreliable if users endogenously choose samples sizes by continuously monitoring their tests”. Their paper goes on to propose "always valid" inference built to survive continuous monitoring. In an interview you need the problem and one remedy: fix the end in advance, or, if the business genuinely needs to look early, use a method designed for sequential looks and say so. The details of those methods belong to <a href="https://phoebefu6.github.io/learn-statistics-with-phoebe/">Learn Statistics with Phoebe ↗</a>.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Ren's S2, retold as an answer<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Ren's constructed story S2, "The A/B test that was stopped early", runs 260 seconds in the bank, the longest of the eight. Its honest fits are experiments strong, pushing back strong, metric choice thin. Part 2 gives Ren the vocabulary to tell it in under two minutes and to make it serve the stats round as well as the behavioural one.</p>
+        <p><strong>Situation and task:</strong> a product manager wanted to stop a test on day four because the dashboard showed a significant result. <strong>Action:</strong> Ren explained that the test had been sized for two weeks, that a reading checked daily will cross the line by chance some of the time, and proposed keeping the planned end date while watching guardrails daily. <strong>Result:</strong> at the end date the lift was much smaller than on day four, and the team decided on a smaller rollout. Every detail is constructed; the shape is what you copy. If an interviewer then asks "what would you do if the business could not wait?", Ren has the second half of the Johari answer ready.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The dashboard with a live p-value.</strong> A familiar setup in product teams: an experiment dashboard that refreshes every morning and shows a green badge when the result is "significant". Nobody intends to peek; the badge does it for them, and a busy stakeholder sees green on day three and asks why it has not shipped. The candidate who can explain, kindly and in one breath, why day three is not the answer is describing exactly the situation Johari and colleagues wrote about.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the product case: metrics and estimation</span>
+      <h2>One metric that decides, and one that catches cheating</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">The product case gives you a vague business prompt and watches how you turn it into numbers. Two moves carry most of it. Metric choice: one primary metric, a few guardrails, and a counter-metric that would catch the primary being gamed. Estimation: break an unknown number into parts you can guess, say each guess out loud, multiply, and check the answer is the right order of magnitude. Every case number in this Part is constructed.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 356" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An estimation tree for boxes delivered per year by a constructed meal-kit app in one city. Households in the city, 2,000,000, times share who subscribe, 1 percent, gives 20,000 subscribers. Times boxes each per week, 0.75, gives 15,000 boxes per week. Times 52 weeks per year gives 780,000 boxes per year, highlighted in coral. Sanity check: 15,000 a week is about 2,100 a day.">
+        <defs>
+          <filter id="p5cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="57" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p5cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p5cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p5cH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p5cL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p5cS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p5cB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p5cV { font: 800 16px Inter, sans-serif; fill: #1B3570; }
+          .p5cA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p5cN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p5cH" x="30" y="26">AN ESTIMATION TREE: BOXES DELIVERED PER YEAR, ONE CITY (CONSTRUCTED)</text>
+        <text class="p5cS" x="30" y="46">tinted = an assumption you say out loud · white = arithmetic · coral = the answer</text>
+
+        <g filter="url(#p5cSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="64" width="160" height="56" rx="8" transform="rotate(-1 110 92)" fill="#EEF2FA"/>
+          <rect x="30" y="144" width="160" height="56" rx="8" transform="rotate(1 110 172)" fill="#EEF2FA"/>
+          <rect x="250" y="104" width="160" height="56" rx="8" transform="rotate(0.8 330 132)" fill="#FFFFFF"/>
+          <rect x="250" y="194" width="160" height="56" rx="8" transform="rotate(-0.8 330 222)" fill="#EEF2FA"/>
+          <rect x="470" y="149" width="160" height="56" rx="8" transform="rotate(-0.6 550 177)" fill="#FFFFFF"/>
+          <rect x="470" y="239" width="160" height="56" rx="8" transform="rotate(0.6 550 267)" fill="#EEF2FA"/>
+          <rect x="690" y="194" width="160" height="56" rx="8" transform="rotate(0.5 770 222)" fill="#FBECEA" stroke="#C2453A"/>
+          <path d="M192 92 L246 126 M192 172 L246 138" marker-end="url(#p5cAr)" stroke-width="1.6"/>
+          <path d="M412 132 L466 171 M412 222 L466 183" marker-end="url(#p5cAr)" stroke-width="1.6"/>
+          <path d="M632 177 L686 216 M632 267 L686 228" marker-end="url(#p5cAr)" stroke-width="1.6"/>
+          <rect x="752" y="100" width="40" height="52" rx="5" transform="rotate(4 772 126)" stroke-width="1.6" fill="#FFFFFF"/>
+          <path d="M760 110 L784 110 M760 124 L766 124 M773 124 L779 124 M760 136 L766 136 M773 136 L779 136" stroke-width="1.4"/>
+        </g>
+
+        <text class="p5cS" x="44" y="86">Households in the city</text>
+        <text class="p5cV" x="44" y="108">2,000,000</text>
+        <text class="p5cS" x="44" y="166">Share who subscribe</text>
+        <text class="p5cV" x="44" y="188">1%</text>
+        <text class="p5cA" x="214" y="136">×</text>
+        <text class="p5cS" x="264" y="126">Subscribers</text>
+        <text class="p5cV" x="264" y="148">20,000</text>
+        <text class="p5cS" x="264" y="216">Boxes each, per week</text>
+        <text class="p5cV" x="264" y="238">0.75</text>
+        <text class="p5cA" x="434" y="180">×</text>
+        <text class="p5cS" x="484" y="171">Boxes per week</text>
+        <text class="p5cV" x="484" y="193">15,000</text>
+        <text class="p5cS" x="484" y="261">Weeks per year</text>
+        <text class="p5cV" x="484" y="283">52</text>
+        <text class="p5cA" x="654" y="225">×</text>
+        <text class="p5cB" x="704" y="216">Boxes per year</text>
+        <text class="p5cV" x="704" y="238">780,000</text>
+
+        <text class="p5cN" x="30" y="322">Sanity check: 15,000 a week is about 2,100 a day. Thousands, not millions: plausible for one city.</text>
+        <text class="p5cN" x="30" y="342">All numbers constructed; your numbers will differ.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - every tinted box is a guess you say out loud; the interviewer can argue with a guess, but never with your arithmetic</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Primary, guardrails, counter-metric<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Primary metric:</strong> the one number that, if it moves, means the change did what it was for. Tie it to the goal you clarified, not to the feature: a "skip a week" button is for keeping subscribers, so the primary is about retention, not about how many people click skip.</p>
+        <p><strong>Guardrails:</strong> what must not get meaningfully worse. For a subscription product that usually means boxes or orders delivered, support contacts and complaints, plus a technical one such as page errors.</p>
+        <p><strong>Counter-metric:</strong> the number that would expose the primary being gamed. If "retained" means "has not cancelled", a feature that lets people skip forever can raise retention while nobody receives anything. A counter-metric such as "retained subscribers who received at least one box in weeks 5 to 8" catches that. Naming a counter-metric before the interviewer finds the hole is the single most convincing move in a metric question.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Estimation in four spoken steps<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Decompose:</strong> "Boxes per year is subscribers, times boxes each per week, times weeks." <strong>State assumptions:</strong> say each guess and where it comes from, even roughly: "two million households is a big city; I will guess one percent subscribe." <strong>Compute:</strong> write the multiplication down and do it slowly; 2,000,000 × 1% = 20,000, × 0.75 = 15,000, × 52 = 780,000. <strong>Sanity-check:</strong> turn the answer into a unit you can picture. 15,000 a week is about 2,100 a day, which is a busy warehouse, not a corner shop and not a continent. If the check fails, say which assumption you distrust and change it out loud.</p>
+        <p>Interviewers grade the structure and the check, not the closeness of your answer to a number they hold. No study was found on how estimation answers are scored; this is common practice, and it is also simply how a careful analyst works.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>When the case is really a diagnosis<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Some product cases are not "should we ship" but "this metric fell 10 percent last week, why?". The same discipline applies in a different order: confirm the metric's definition and the data pipeline first, then split by time, platform, region and user type to find where the drop lives, then form hypotheses for that slice only. Saying "first I would check it is not a logging change" earns credit before any analysis. Product analytics as a subject, with funnels, cohorts and metric trees, belongs to <a href="https://phoebefu6.github.io/learn-product-analytics-with-phoebe/">Learn Product Analytics with Phoebe ↗</a>.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The metric that rose while the product got worse.</strong> A pattern product teams meet sooner or later: "time in app" climbs after a redesign, the team celebrates, and support tickets reveal people are spending longer because they cannot find things. Nobody gamed anything on purpose; the primary simply rewarded the wrong behaviour, and there was no counter-metric to notice. Telling a version of this from your own work, if you have one, is a ready-made answer to "how do you choose metrics?".</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Work a full product case, out loud</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">The prompt is constructed: "A constructed meal-kit subscription app is considering a 'skip a week' button. How would you decide whether to ship it?" Work each step with Ren, writing your spoken notes in the boxes as you go. Then pick a feature from a product you know and do the six steps again for yourself; that second pass is the artefact you bring to a real round.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 332" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The skip-a-week test design. 40,000 constructed active subscribers are randomised by subscriber into arm A with no button, 20,000, and arm B with the skip-a-week button, 20,000. Both run along an eight-week window to an end date fixed before launch, flagged in coral. On that date the result is read once: primary, retained at 8 weeks; guardrail, boxes per subscriber; counter, got a box in weeks 5 to 8.">
+        <defs>
+          <filter id="p5dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="59" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p5dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p5dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p5dH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p5dL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p5dS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p5dB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p5dV { font: 800 16px Inter, sans-serif; fill: #1B3570; }
+          .p5dA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p5dN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p5dH" x="30" y="26">THE SKIP-A-WEEK TEST, DECIDED BEFORE IT STARTS (CONSTRUCTED)</text>
+        <text class="p5dA" x="30" y="56">ELIGIBLE</text>
+        <text class="p5dA" x="260" y="50">RANDOMISED BY SUBSCRIBER</text>
+        <text class="p5dA" x="480" y="104">EIGHT-WEEK WINDOW</text>
+
+        <g filter="url(#p5dSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="110" width="170" height="90" rx="10" transform="rotate(-0.8 115 155)" fill="url(#p5dHc)"/>
+          <path d="M150 70 L176 62 L198 72 L172 80 Z M150 70 L150 92 L172 102 L172 80 M198 72 L198 94 L172 102" stroke-width="1.6"/>
+          <path d="M204 150 L254 92 M204 160 L254 196" marker-end="url(#p5dAr)" stroke-width="1.6"/>
+          <rect x="260" y="60" width="180" height="56" rx="8" transform="rotate(0.8 350 88)" fill="#FFFFFF"/>
+          <rect x="260" y="170" width="180" height="56" rx="8" transform="rotate(-0.8 350 198)" fill="#EEF2FA"/>
+          <path d="M444 90 L474 132 M444 196 L474 150" marker-end="url(#p5dAr)" stroke-width="1.6"/>
+          <path d="M480 140 L720 140"/>
+          <path d="M480 134 L480 146 M510 136 L510 144 M540 136 L540 144 M570 136 L570 144 M600 136 L600 144 M630 136 L630 144 M660 136 L660 144 M690 136 L690 144" stroke-width="1.4"/>
+          <path d="M720 140 L720 112"/>
+          <path d="M720 112 L720 86 L756 96 L720 106 Z" fill="#C2453A" stroke="#8E2A22"/>
+          <path d="M720 166 L720 190" marker-end="url(#p5dAr)" stroke-width="1.6"/>
+          <rect x="600" y="196" width="250" height="96" rx="10" transform="rotate(0.4 725 244)" fill="#FFFFFF"/>
+        </g>
+
+        <text class="p5dL" x="30" y="222">40,000 active subscribers</text>
+        <text class="p5dS" x="30" y="238">each one assigned at random</text>
+        <text class="p5dL" x="274" y="82">A · no button</text>
+        <text class="p5dV" x="274" y="104">20,000</text>
+        <text class="p5dL" x="274" y="192">B · skip-a-week button</text>
+        <text class="p5dV" x="274" y="214">20,000</text>
+        <text class="p5dS" x="486" y="162">week 0</text>
+        <text class="p5dS" x="706" y="162" text-anchor="end">week 8</text>
+        <text class="p5dB" x="702" y="76" text-anchor="middle">end date fixed before launch</text>
+        <text class="p5dH" x="616" y="218">READ ONCE, ON THE END DATE</text>
+        <text class="p5dS" x="616" y="240">primary: retained at 8 weeks</text>
+        <text class="p5dS" x="616" y="258">guardrail: boxes per subscriber</text>
+        <text class="p5dS" x="616" y="276">counter: got a box in weeks 5-8</text>
+
+        <text class="p5dN" x="30" y="318">Constructed: 8,068 needed per arm; 20,000 per arm can detect about 1.3 points. Your numbers will differ.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - every decision in this picture is made before the first subscriber sees a button, which is what makes the end-date reading worth believing</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Clarify the goal before touching a metric.</strong> Ask what the button is for and what "ship" would mean. State your assumption if the interviewer will not say. Ren's two questions take twenty seconds and change everything after them.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · clarify (Ren, constructed)</span>Q: What problem is the button meant to solve?
+A (assumed): subscribers cancel when they travel or are busy;
+   a skip should keep them instead of losing them.
+Q: Is anything off limits?
+A (assumed): we cannot accept a big drop in boxes delivered.
+Goal in one line: keep more subscribers subscribed,
+   without delivering meaningfully fewer boxes.</div>
+      </div>
+      <div class="step">
+        <p><strong>Choose one primary metric, guardrails and a counter-metric.</strong> Write them as definitions someone could compute, with a time window.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · metrics</span>Primary:   share of subscribers still subscribed at 8 weeks
+Guardrail: boxes delivered per original subscriber, weeks 1-8
+Guardrail: support contacts per 1,000 subscribers
+Counter:   share of the retained who received a box in weeks 5-8
+           (catches "retained" meaning "skipping forever")</div>
+      </div>
+      <div class="step">
+        <p><strong>Design the test, with the end fixed in advance.</strong> Unit, split, duration and when you will look, in that order.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · design</span>Unit:      subscriber (the button lives in their account)
+Split:     50/50, all 40,000 active subscribers (constructed)
+Duration:  8 weeks, so the 8-week primary is fully observed
+           for everyone; end date written down before launch
+Looking:   daily checks that data flow and the split is even;
+           the result is read once, on the end date</div>
+      </div>
+      <div class="step">
+        <p><strong>Estimate the sample you need, and show the arithmetic.</strong> Constructed inputs: 70% are still subscribed at 8 weeks today, and a 2-point lift is the smallest worth shipping for. Standard two-proportion formula, 5% two-sided significance, 80% power.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · sample size (constructed)</span>z values:   1.96 (5% two-sided) + 0.84 (80% power) = 2.80
+squared:    2.80 x 2.80 = 7.84
+variance:   0.70 x 0.30 = 0.21
+            0.72 x 0.28 = 0.2016
+            sum = 0.4116
+lift:       0.02, squared = 0.0004
+per arm:    7.84 x 0.4116 / 0.0004 = 8,067.36, round up to 8,068
+total:      8,068 x 2 = 16,136; we have 40,000, so 20,000 per arm
+detectable at 20,000 per arm: about 1.3 points
+(software with unrounded z values says 8,077 per arm;
+ same answer to the order that matters)</div>
+      </div>
+      <div class="step">
+        <p><strong>Say in advance what result would change the decision.</strong> Write the rule before the data exist, including the outcome where you do not ship.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · decision rule</span>Ship if:     retention lift is at least 1 point and its
+             interval excludes zero, AND boxes per subscriber
+             falls by less than 3%, AND the counter-metric holds
+Do not ship: retention flat, or boxes fall 3% or more
+Investigate: retention up but counter-metric down
+             (people are parked on skip, not kept)
+All thresholds constructed; agree yours with the team first.</div>
+      </div>
+      <div class="step">
+        <p><strong>Close with a 30-second summary.</strong> Goal, metric, design, rule, in that order, as if the interviewer had walked in late. Delivery on the day belongs to <a href="https://phoebefu6.github.io/learn-public-speaking-with-phoebe/">Learn Public Speaking with Phoebe ↗</a>; the content is yours.</p>
+        <div class="prompt-box good"><span class="label">★ Step 6 · 30 seconds</span>"The button exists to keep busy subscribers, so the primary
+is the share still subscribed at 8 weeks, with boxes per
+subscriber as the guardrail and a box in weeks 5 to 8 as the
+counter-metric, so skipping forever does not count as kept.
+I would randomise all 40,000 subscribers 50/50 for 8 weeks,
+which detects about a 1.3-point lift, read it once on a date
+fixed in advance, and ship only if retention rises at least
+a point without boxes falling 3% or more."</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Say the numbers are yours.</strong> In a real round, every number in steps 3 to 5 is an assumption you invent on the spot. Label them as you say them: "I'll assume 70 percent retention today". An interviewer who disagrees with an assumption will tell you, and that conversation is part of the round, not a sign it is going badly.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 6</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Say the one-sentence p-value out loud three times</strong>, then once more adding principle 5 and what you would report instead. Record yourself once and listen back.</li>
+      <li><strong>Retell your own experiment story</strong> (or Ren's S2) in under two minutes, with the stopping rule named in the action.</li>
+      <li><strong>Pick one feature in a product you use</strong> and write its primary metric, two guardrails and a counter-metric, each with a time window.</li>
+      <li><strong>Do one estimation from scratch</strong> with four boxes, the arithmetic written down and a sanity check in a unit you can picture. Check the multiplication twice.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 5 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · An interviewer asks "what does p = 0.03 mean?" Which answer agrees with the ASA statement?</p>
+      <button class="qopt" type="button">A · There is a 3 percent chance the hypothesis is false and a 97 percent chance it is true</button>
+      <button class="qopt" type="button">B · There is a 3 percent probability the result was due to chance alone</button>
+      <button class="qopt" type="button">C · If there were no real effect and the model held, data at least this extreme would turn up about 3 percent of the time; it says nothing about how big the effect is</button>
+      <button class="qopt" type="button">D · The effect is large enough to matter for the business</button>
+      <p class="qwhy">The p-value is computed assuming no effect, so it describes the data, not the hypothesis. A and B are the two readings the ASA's second principle rules out; D confuses significance with size, which principle 5 rules out.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">2 · A test was sized for 14 days. On day 4 the dashboard shows p under .05 and the product manager wants to ship. What is the strongest answer?</p>
+      <button class="qopt" type="button">A · Ship: significant is significant, whichever day it appears</button>
+      <button class="qopt" type="button">B · Wait until the p-value is under .01 and then stop</button>
+      <button class="qopt" type="button">C · Restart the test from zero so the day-4 reading is not wasted</button>
+      <button class="qopt" type="button">D · Keep the planned end date, because a p-value checked daily will cross .05 by chance some of the time; if the business must look early, switch to a method designed for continuous monitoring</button>
+      <p class="qwhy">Johari, Pekelis and Walsh (2015) describe standard p-values as wholly unreliable when sample sizes are chosen by continuously monitoring the test. A ignores that, B is still stop-on-a-threshold peeking with a stricter line, and C throws away valid data without fixing the rule.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · For the skip-a-week button, which metric set is strongest?</p>
+      <button class="qopt" type="button">A · Primary: subscribed at 8 weeks; guardrail: boxes per subscriber; counter: retained subscribers who got a box in weeks 5 to 8</button>
+      <button class="qopt" type="button">B · Primary: number of clicks on the skip button</button>
+      <button class="qopt" type="button">C · Three primary metrics: retention, boxes and app opens, shipping if any one improves</button>
+      <button class="qopt" type="button">D · Primary: subscribed at 8 weeks, with no other metrics so the readout stays simple</button>
+      <p class="qwhy">A ties the primary to the goal, protects deliveries with a guardrail, and adds a counter-metric so people parked on endless skips do not count as kept. B measures the feature, not the goal; C gives chance three tries to declare a win; D leaves the gaming hole open.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">ASA Statement on Statistical Significance and P-Values (2016)</span><span class="note">Released 7 March 2016 (Wasserstein and Lazar, The American Statistician); all six principles read at source in the ASA release</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Johari, Pekelis and Walsh (2015), arXiv 1512.04922</span><span class="note">The peeking quote, read in the abstract; the full paper's methods were not read and are not taught here</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Product case numbers and the skip-a-week case</span><span class="note">Constructed for teaching: households, subscribers, retention, thresholds and the sample-size inputs; the arithmetic is checked, the inputs are invented</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Ren and story S2 "The A/B test that was stopped early"</span><span class="note">Constructed; length and fits as recorded for the session 4 bench</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Statistics and product analytics as subjects</span><span class="note">Taught in <a href="https://phoebefu6.github.io/learn-statistics-with-phoebe/">Learn Statistics with Phoebe ↗</a> and <a href="https://phoebefu6.github.io/learn-product-analytics-with-phoebe/">Learn Product Analytics with Phoebe ↗</a>; here they are rounds</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">How estimation and metric answers are scored</span><span class="note">No study found; taught as common practice</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 5 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>The one-sentence p-value</b><span>Probability of data at least this extreme if there were no real effect. Then add: it is not the effect size.</span></div>
+      <div class="cheat-item"><b>Two wrong answers</b><span>Not the chance the hypothesis is true; not the chance it was luck alone. ASA principle 2.</span></div>
+      <div class="cheat-item"><b>Five test decisions</b><span>Unit, one primary, guardrails, sample size and duration, when you look. In that order.</span></div>
+      <div class="cheat-item"><b>No peeking</b><span>Fix the end date first, or use a method built for continuous monitoring and say so.</span></div>
+      <div class="cheat-item"><b>Metric trio</b><span>Primary for the goal, guardrails for harm, a counter-metric that catches the primary being gamed.</span></div>
+      <div class="cheat-item"><b>Estimation</b><span>Decompose, state each assumption, multiply on paper, sanity-check in a unit you can picture.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Ren can now answer the statistics round and the product case in the right order. Session 6 closes the loop: how to handle a take-home without gold-plating it, what to ask when the interviewer says "any questions for us?", and the review you write within the hour after every round so the next one goes better.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 5 of 6 · learn-interview-prep-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="04-the-practice-round-bench.html">← Prev: The practice-round bench</a> &nbsp;·&nbsp; <a href="06-take-homes-and-the-review.html">Next: Take-homes, your questions, and the review after →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=15"></script>
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 1 of 6. A data interview loop is a set of measurements. Read a job description into competencies and rounds, see what the selection research says structured interviews predict and where the researchers disagree, what structure means from the candidate's chair, and why 'they decide in four minutes' is not what the study found.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="What the interview is actually measuring - learn interview prep with phoebe">
+<meta property="og:description" content="Session 1 of 6. Competencies, rounds, the validity research and its disagreement, and a job description read into a prep plan.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/courses/01-what-the-interview-measures.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What the interview is actually measuring - learn interview prep with phoebe">
+<meta name="twitter:description" content="Session 1 of 6. Read the job into competencies before you prepare a single answer.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 1 · What the interview is actually measuring - learn interview prep with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=15">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-interview-prep-with-phoebe</a> / Session 1 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Interview Prep with Phoebe · Session 1 of 6</div>
+    <h1>What the interview is actually <span class="accent">measuring</span></h1>
+    <p class="sub">Most interview prep starts with answers: lists of common questions, rehearsed openings, a polished story about a weakness. It works better the other way round. A data or AI interview loop is a set of measurements, each round built to read a few competencies the job needs, and the job description tells you which ones. Tonight we read a loop the way the people who designed it do, look at what decades of selection research say interviews actually predict and where that research is still arguing with itself, see what structure means from the candidate's chair, and turn one job description into a prep plan before writing a single answer.</p>
+    <div class="chip-row">
+      <span class="chip level">🟢 Foundations</span>
+      <span class="chip audience">Anyone heading into a data or AI interview</span>
+      <span class="chip audience">Bring one job description</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Loops, evidence, structure</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: read the job</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">The running case is constructed. Ren is an invented analyst with three years of dashboards, SQL and the occasional A/B test readout, applying for a first data scientist role in product analytics. Ren has a job description, a calendar with a recruiter screen in it, and a vague plan to "practise questions". Across six sessions Ren reads the job, builds a story bank, drills the SQL round, practises against the session 4 bench, works the statistics and product case rounds, and closes with take-homes, questions and a review after every round. Everything Ren does is a move you can make with your own job description.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = write it yourself</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A map of your loop from job description to competencies to rounds, an honest summary of what interviews predict and where the researchers disagree, a list of what a structured interviewer is scoring, and a one-page prep plan with every competency rated strong, thin or missing.</p>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>A note on nerves.</strong> Interviews are stressful, and parts of these sessions are about planning your workload so the stress has less to feed on. None of it is medical or clinical advice. The body side of stress, sleep and recovery belongs to the planned move-shelf courses on <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers the loop as a set of measurements</span>
+      <h2>Every round reads a few competencies</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A typical data science loop has a recruiter screen, a SQL round, a statistics or experiment round, a product case, one or two behavioural conversations, and sometimes a take-home. None of them is a general test of whether you are good. Each one is built to read a handful of competencies, and most competencies are read by more than one round. The job description is where those competencies are written down, usually in the requirements and the "what you will do" list.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A job description on the left feeds eight competency chips in the middle: SQL and wrangling, experiments and stats, metric choice, explaining results, pushing back, vague ask to question, learning from mistakes, data quality. Lines run from each chip to the rounds that read it on the right: SQL round, stats round, product case, behavioural, take-home. The behavioural round, highlighted in coral, receives five lines.">
+        <defs>
+          <filter id="p1aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p1aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p1aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p1aH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p1aL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p1aS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p1aB { font: 800 12px Inter, sans-serif; fill: #8E2A22; }
+          .p1aA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p1aN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p1aH" x="30" y="26">FROM ONE JOB DESCRIPTION TO THE ROUNDS THAT READ IT</text>
+        <text class="p1aA" x="40" y="44">JOB DESCRIPTION A</text>
+        <text class="p1aA" x="290" y="44">COMPETENCIES</text>
+        <text class="p1aA" x="600" y="44">ROUNDS</text>
+
+        <g filter="url(#p1aSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="52" width="190" height="216" rx="6" transform="rotate(-0.8 135 160)" fill="#FFFFFF"/>
+          <path d="M58 76 L210 76 M58 96 L196 96 M58 116 L206 116 M58 136 L180 136 M58 156 L208 156 M58 176 L190 176 M58 196 L204 196 M58 216 L170 216 M58 236 L200 236" stroke-width="1.2" stroke="#2A4FA0"/>
+          <path d="M236 160 L282 160" marker-end="url(#p1aAr)"/>
+          <rect x="290" y="50" width="210" height="22" rx="11" fill="#EEF2FA"/>
+          <rect x="290" y="78" width="210" height="22" rx="11" fill="#EEF2FA"/>
+          <rect x="290" y="106" width="210" height="22" rx="11" fill="#EEF2FA"/>
+          <rect x="290" y="134" width="210" height="22" rx="11" fill="#EEF2FA"/>
+          <rect x="290" y="162" width="210" height="22" rx="11" fill="#EEF2FA"/>
+          <rect x="290" y="190" width="210" height="22" rx="11" fill="#EEF2FA"/>
+          <rect x="290" y="218" width="210" height="22" rx="11" fill="#EEF2FA"/>
+          <rect x="290" y="246" width="210" height="22" rx="11" fill="#EEF2FA"/>
+          <path d="M502 61 L598 74 M502 61 L598 266 M502 89 L598 122 M502 117 L598 170 M502 145 L598 218 M502 145 L598 266 M502 173 L598 218 M502 201 L598 170 M502 201 L598 218 M502 229 L598 218 M502 257 L598 74 M502 257 L598 266" stroke-width="1.3" stroke="#525C75"/>
+          <rect x="600" y="56" width="220" height="36" rx="8" transform="rotate(0.5 710 74)" fill="#FFFFFF"/>
+          <rect x="600" y="104" width="220" height="36" rx="8" transform="rotate(-0.5 710 122)" fill="#FFFFFF"/>
+          <rect x="600" y="152" width="220" height="36" rx="8" transform="rotate(0.4 710 170)" fill="#FFFFFF"/>
+          <rect x="600" y="200" width="220" height="36" rx="8" transform="rotate(-0.4 710 218)" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="600" y="248" width="220" height="36" rx="8" transform="rotate(0.5 710 266)" fill="#FFFFFF"/>
+        </g>
+
+        <text class="p1aS" x="135" y="290" text-anchor="middle">constructed</text>
+        <text class="p1aL" x="304" y="65">SQL and wrangling</text>
+        <text class="p1aL" x="304" y="93">Experiments, stats</text>
+        <text class="p1aL" x="304" y="121">Metric choice</text>
+        <text class="p1aL" x="304" y="149">Explaining results</text>
+        <text class="p1aL" x="304" y="177">Pushing back</text>
+        <text class="p1aL" x="304" y="205">Vague ask to question</text>
+        <text class="p1aL" x="304" y="233">Learning from mistakes</text>
+        <text class="p1aL" x="304" y="261">Data quality</text>
+        <text class="p1aL" x="616" y="78">SQL round</text>
+        <text class="p1aL" x="616" y="126">Stats or experiment round</text>
+        <text class="p1aL" x="616" y="174">Product case</text>
+        <text class="p1aB" x="616" y="222">Behavioural: 5 of 8</text>
+        <text class="p1aL" x="616" y="270">Take-home</text>
+
+        <text class="p1aN" x="30" y="316">Most competencies are read twice; the behavioural round reads the most, which is why session 2 builds a story bank.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - prepare competencies, not rounds: one competency shows up in several rooms, and the behavioural room hears five of eight</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>A competency is something a round can see<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>"Strong analytical skills" is not a competency anyone can measure in 45 minutes. "Writes correct SQL against an unfamiliar schema", "designs and reads an A/B test", "chooses a metric for a new feature" and "disagrees with a stakeholder without losing them" are: each one is a thing an interviewer can watch you do or ask you to evidence. Turning the job description's adjectives into six to eight observable competencies like these is the first move, and the build-along does it on Ren's job description.</p>
+        <p>The mapping in the figure is Ren's constructed loop, but the shape is common: the technical rounds each read one or two competencies deeply, and the behavioural conversation reads several broadly, through stories. That asymmetry decides where prep time goes. A candidate who spends three weeks on SQL puzzles and an evening on stories has prepared one round for a loop where stories are heard in several.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>When the job description is vague<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Some job descriptions are a wish list copied from three other roles. Two moves help. First, weight what appears in the "what you will do" section over the requirements list: duties describe the work, requirements often describe an imagined candidate. Second, ask the recruiter in the screen what the loop looks like and what each round focuses on. That is an ordinary, expected question, and the answer is the most reliable map you will get. Session 6 has more on the questions candidates ask.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The analyst who prepared for the wrong round.</strong> A familiar pattern: an analyst moving into data science spends every evening for a month on algorithm puzzles because "data science interviews are technical", then meets a loop with one SQL round, a product case and two behavioural conversations, and has no prepared story about a time a metric was wrong. Nothing about the effort was wasted except its direction, and the job description had the direction written in it.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers what interviews predict, and the disagreement</span>
+      <h2>What the research says interviews predict</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Industrial psychologists have spent a century asking which selection methods predict later job performance. The answer you meet most often comes from one 1998 summary. A 2022 re-analysis changed most of its numbers and moved structured interviews to the top, and the people who built the 1998 numbers do not all accept the change. You do not need to settle the argument to use what both sides agree on.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 346" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five rows comparing validity estimates for job performance, 1998 as a hollow dot and 2022 as a filled dot, joined by a line. Structured interview .51 to .42, highlighted in coral as first in 2022. Job knowledge tests .48 to .40. Work sample tests .54 to .33. Cognitive ability .51 to .31. Unstructured interview .38 to .19. Axis from 0 to .6.">
+        <defs>
+          <filter id="p1bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="23" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .p1bH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p1bL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p1bS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p1bB { font: 800 12px Inter, sans-serif; fill: #8E2A22; }
+          .p1bV { font: 800 12px Inter, sans-serif; fill: #1B3570; }
+          .p1bA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p1bN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p1bH" x="30" y="26">VALIDITY FOR JOB PERFORMANCE: 1998 ESTIMATE AGAINST 2022 RE-ANALYSIS</text>
+        <text class="p1bS" x="560" y="48">hollow = Schmidt and Hunter 1998</text>
+        <text class="p1bS" x="560" y="62">filled = Sackett et al. 2022</text>
+
+        <g filter="url(#p1bSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M300 290 L780 290"/>
+          <path d="M300 286 L300 294 M380 286 L380 294 M460 286 L460 294 M540 286 L540 294 M620 286 L620 294 M700 286 L700 294 M780 286 L780 294" stroke-width="1.4"/>
+          <rect x="40" y="70" width="800" height="32" rx="8" fill="#FBECEA" stroke="#C2453A"/>
+          <path d="M636 86 L708 86" stroke="#C2453A"/>
+          <path d="M620 132 L684 132" stroke="#525C75"/>
+          <path d="M564 178 L732 178" stroke="#525C75"/>
+          <path d="M548 224 L708 224" stroke="#525C75"/>
+          <path d="M452 264 L604 264" stroke="#525C75"/>
+          <circle cx="708" cy="86" r="7" fill="#FFFFFF"/>
+          <circle cx="636" cy="86" r="7" fill="#C2453A" stroke="#8E2A22"/>
+          <circle cx="684" cy="132" r="7" fill="#FFFFFF"/>
+          <circle cx="620" cy="132" r="7" fill="#2A4FA0"/>
+          <circle cx="732" cy="178" r="7" fill="#FFFFFF"/>
+          <circle cx="564" cy="178" r="7" fill="#2A4FA0"/>
+          <circle cx="708" cy="224" r="7" fill="#FFFFFF"/>
+          <circle cx="548" cy="224" r="7" fill="#2A4FA0"/>
+          <circle cx="604" cy="264" r="7" fill="#FFFFFF"/>
+          <circle cx="452" cy="264" r="7" fill="#2A4FA0"/>
+        </g>
+
+        <text class="p1bB" x="280" y="90" text-anchor="end">Structured interview</text>
+        <text class="p1bL" x="280" y="136" text-anchor="end">Job knowledge tests</text>
+        <text class="p1bL" x="280" y="182" text-anchor="end">Work sample tests</text>
+        <text class="p1bL" x="280" y="228" text-anchor="end">Cognitive ability tests</text>
+        <text class="p1bL" x="280" y="268" text-anchor="end">Unstructured interview</text>
+        <text class="p1bB" x="622" y="90" text-anchor="end">.42</text>
+        <text class="p1bV" x="722" y="90">.51</text>
+        <text class="p1bV" x="606" y="136" text-anchor="end">.40</text>
+        <text class="p1bV" x="698" y="136">.48</text>
+        <text class="p1bV" x="550" y="182" text-anchor="end">.33</text>
+        <text class="p1bV" x="746" y="182">.54</text>
+        <text class="p1bV" x="534" y="228" text-anchor="end">.31</text>
+        <text class="p1bV" x="722" y="228">.51</text>
+        <text class="p1bV" x="438" y="268" text-anchor="end">.19</text>
+        <text class="p1bV" x="618" y="268">.38</text>
+        <text class="p1bS" x="300" y="308" text-anchor="middle">0</text>
+        <text class="p1bS" x="380" y="308" text-anchor="middle">.1</text>
+        <text class="p1bS" x="460" y="308" text-anchor="middle">.2</text>
+        <text class="p1bS" x="540" y="308" text-anchor="middle">.3</text>
+        <text class="p1bS" x="620" y="308" text-anchor="middle">.4</text>
+        <text class="p1bS" x="700" y="308" text-anchor="middle">.5</text>
+        <text class="p1bS" x="780" y="308" text-anchor="middle">.6</text>
+
+        <text class="p1bN" x="30" y="332">Correlations with rated job performance. Every number fell; structured interviews fell least and now rank first.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the gap between structured and unstructured interviews widened from .13 to .23, and that is the part both camps accept</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The 1998 numbers and the 2022 revision<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Schmidt and Hunter (1998, Psychological Bulletin)</strong> summarised 85 years of research on 19 selection procedures. Their table put work sample tests at .54, general mental ability and structured interviews both at .51, job knowledge tests at .48 and unstructured interviews at .38, as correlations with later rated job performance. For two decades those were the numbers in every textbook and hiring guide.</p>
+        <p><strong>Sackett, Zhang, Berry and Lievens (2022, Journal of Applied Psychology)</strong> re-examined how those estimates had been corrected for range restriction, the statistical adjustment for the fact that a study only sees people who were hired. They argued the corrections were often too large, especially in concurrent studies run on current employees, and recommended no range-restriction correction for those. Most validities fell by .10 to .20. Structured interviews came out at .42 and ranked first; job knowledge .40; work samples .33; cognitive ability .31; unstructured interviews .19. They also showed where the old .51 came from: an observed correlation of .28, raised to .37 by one correction and to .51 by the range-restriction step.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The disagreement, and what both sides accept<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Oh, Le and Roth (2023, JAP)</strong> reanalysed Sackett's own data and argued that it substantially underestimates how severe range restriction is, and that the no-correction recommendation should be reconsidered. <strong>Ones and Viswesvaran (2023)</strong> disagreed that cognitive ability's validity is much lower than previously reported. <strong>Sackett and colleagues' reply (2023)</strong> agreed correction is right when the information about the applicant pool exists, and argued that in meta-analysis it usually does not. The abstracts of the first and third were read; the second in full.</p>
+        <p>This page does not resolve that argument, and neither should you. What a candidate can take from it is the part neither camp disputes: a structured interview predicts performance better than an unstructured one, in both sets of numbers. The size of the cognitive ability estimate is where they fight, and that is a question for the people designing tests, not for you preparing answers.</p>
+      </div>
+    </details>
+
+    <div class="callout tip">
+      <p><strong>Do not quote validities in your interview.</strong> These numbers explain why loops are built the way they are. Saying "structured interviews have a validity of .42" to an interviewer earns nothing and invites the argument above. Use the finding privately: prepare as though every answer will be rated against a rubric, because increasingly it will be.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers structure from the candidate's chair</span>
+      <h2>What a structured interviewer is scoring</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Campion, Palmer and Campion's 1997 review listed fifteen components that make an interview structured, seven about the content of the questions and eight about how answers are evaluated. The list below is as given by Levashina and colleagues' 2014 review, because the 1997 original could not be read at source. Seen from the other side of the table, each component is a fact about how you will be heard.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two panels. Left, unstructured, a conversation: questions change from candidate to candidate, one overall impression decides, rapport and fluency carry the score. Right, structured, a measurement: the same questions for everyone, each answer rated on an anchored scale with notes, your questions held to the end. The right panel is outlined in cobalt.">
+        <defs>
+          <filter id="p1cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="37" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .p1cH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p1cL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p1cS { font: 400 12px Inter, sans-serif; fill: #525C75; }
+          .p1cR { font: 800 12px Inter, sans-serif; fill: #991B1B; }
+          .p1cB { font: 800 12px Inter, sans-serif; fill: #1B3570; }
+          .p1cN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p1cH" x="30" y="26">THE SAME HOUR, HEARD TWO WAYS</text>
+
+        <g filter="url(#p1cSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="50" width="390" height="180" rx="12" transform="rotate(-0.4 235 140)" fill="#FEF2F2" stroke="#FCA5A5"/>
+          <rect x="450" y="50" width="390" height="180" rx="12" transform="rotate(0.4 645 140)" fill="#EEF2FA" stroke="#2A4FA0"/>
+        </g>
+
+        <text class="p1cR" x="58" y="84">Unstructured: a conversation</text>
+        <text class="p1cS" x="58" y="114">Questions change from candidate to candidate</text>
+        <text class="p1cS" x="58" y="138">One overall impression decides at the end</text>
+        <text class="p1cS" x="58" y="162">Rapport and fluency carry much of the score</text>
+        <text class="p1cS" x="58" y="186">Prep that works: being likeable</text>
+        <text class="p1cB" x="468" y="84">Structured: a measurement</text>
+        <text class="p1cS" x="468" y="114">The same questions, from a job analysis</text>
+        <text class="p1cS" x="468" y="138">Each answer rated on an anchored scale</text>
+        <text class="p1cS" x="468" y="162">Notes taken; your questions held to the end</text>
+        <text class="p1cL" x="468" y="186">Prep that works: evidence per competency</text>
+
+        <text class="p1cN" x="30" y="268">Components from Campion et al. (1997) as listed by Levashina et al. (2014). Most real loops sit between the two.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - in the right-hand room a charming answer to the wrong question scores low, and a plain answer with evidence scores high</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Four components that change how you answer<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Questions based on a job analysis, the same for each candidate.</strong> The questions come from the competencies, so the job description predicts them. <strong>Each answer rated, on anchored scales.</strong> An answer is scored against descriptions of weak, adequate and strong evidence for that one competency, so wandering into a different competency earns nothing on this question. <strong>Notes taken.</strong> What you say is written down and compared later; specific actions and results survive into the notes, adjectives do not. <strong>Limited prompting and follow-up.</strong> The interviewer may not rescue a vague answer with "and what did you do then?", so the structure of the answer has to be yours.</p>
+        <p>Not every loop is fully structured, and the people interviewing you on any given day vary. Preparing for the structured version costs nothing in an unstructured one: clear evidence for the competency asked about is a good answer in both rooms.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>"They decide in the first four minutes", traced<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The claim is usually credited to a study of interviewers' decision time. <strong>Frieder, Van Iddekinge and Raymark (2016)</strong> studied 166 interviewers and 691 applicants at a university career centre. Their abstract reports that more experienced interviewers and more rapport building went with quicker decisions, and that asking every candidate the same questions went with <em>longer</em> decision times. A reported breakdown of the same study puts only about 5 percent of decisions in the first minute and about 30 percent within five minutes, meaning most came later. Those percentages were seen in a secondary summary, not in the paper itself, so treat them as reported.</p>
+        <p>The "thirty seconds" version usually points at <strong>Ambady and Rosenthal (1993)</strong>, who found that strangers' ratings of 13 college teachers from silent clips under 30 seconds predicted end-of-semester student evaluations. That is a study of teachers on silent video, not of hiring decisions. First impressions matter in interviews; the specific minute counts do not come from where they are said to.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The fluent answer that scored low.</strong> A pattern any interviewer who has used a rubric will recognise: a candidate asked about a time they handled a disagreement gives a warm, articulate story about leading a project, which is a different competency. The conversation felt good. The rubric line for disagreement stayed empty. In an unstructured interview the warmth might have carried the day; in a structured one it did not count. Session 2 builds the habit of answering the competency in the question.</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Read the job description into a prep plan</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">Ren's job description A is constructed but written in the ordinary style of a product analytics data scientist posting. Work through it with Ren, then do the same to your own job description as you go; if you have none yet, use Ren's. By the end you have a one-page plan: eight competencies, the round that reads each, and an honest self-rating.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four lines from Ren's job description on the left, each with its key phrase highlighted, and an arrow from each to a competency chip and a self-rating on the right. Write SQL against our event tables becomes SQL and wrangling, rated strong. Design and read A/B tests becomes experiments and stats, rated thin, highlighted in coral. Choose metrics for new features becomes metric choice, rated thin. Explain findings to product managers becomes explaining results, rated strong.">
+        <defs>
+          <filter id="p1dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="41" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p1dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p1dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p1dH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p1dL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p1dS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p1dB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p1dA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p1dN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p1dH" x="30" y="26">A LINE OF THE JOB, A COMPETENCY, AN HONEST RATING</text>
+        <text class="p1dA" x="30" y="48">FROM JOB DESCRIPTION A (CONSTRUCTED)</text>
+        <text class="p1dA" x="560" y="48">COMPETENCY</text>
+        <text class="p1dA" x="790" y="48">REN</text>
+
+        <g filter="url(#p1dSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="58" width="440" height="176" rx="8" transform="rotate(-0.3 250 146)" fill="#FFFFFF"/>
+          <rect x="46" y="70" width="300" height="24" rx="4" fill="#EEF2FA" stroke="none"/>
+          <rect x="46" y="110" width="300" height="24" rx="4" fill="#FBECEA" stroke="none"/>
+          <rect x="46" y="150" width="300" height="24" rx="4" fill="#EEF2FA" stroke="none"/>
+          <rect x="46" y="190" width="300" height="24" rx="4" fill="#EEF2FA" stroke="none"/>
+          <path d="M478 82 L552 82 M478 122 L552 122 M478 162 L552 162 M478 202 L552 202" marker-end="url(#p1dAr)"/>
+          <rect x="560" y="68" width="200" height="28" rx="14" fill="#EEF2FA"/>
+          <rect x="560" y="108" width="200" height="28" rx="14" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="560" y="148" width="200" height="28" rx="14" fill="#EEF2FA"/>
+          <rect x="560" y="188" width="200" height="28" rx="14" fill="#EEF2FA"/>
+          <circle cx="784" cy="82" r="7" fill="#2A4FA0"/>
+          <circle cx="784" cy="122" r="7" fill="url(#p1dHc)"/>
+          <circle cx="784" cy="162" r="7" fill="url(#p1dHc)"/>
+          <circle cx="784" cy="202" r="7" fill="#2A4FA0"/>
+        </g>
+
+        <text class="p1dL" x="50" y="87">Write SQL against our event tables</text>
+        <text class="p1dL" x="50" y="127">Design and read A/B tests for launches</text>
+        <text class="p1dL" x="50" y="167">Choose metrics for new features</text>
+        <text class="p1dL" x="50" y="207">Explain findings to product managers</text>
+        <text class="p1dL" x="576" y="86">SQL and wrangling</text>
+        <text class="p1dB" x="576" y="126">Experiments, stats</text>
+        <text class="p1dL" x="576" y="166">Metric choice</text>
+        <text class="p1dL" x="576" y="206">Explaining results</text>
+        <text class="p1dS" x="798" y="86">strong</text>
+        <text class="p1dS" x="798" y="126">thin</text>
+        <text class="p1dS" x="798" y="166">thin</text>
+        <text class="p1dS" x="798" y="206">strong</text>
+
+        <text class="p1dN" x="30" y="262">Four of the eight lines. The coral row is the one Ren's prep plan spends the most hours on.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the highlighter finds the verb, the verb names the competency, and the rating tells you where the hours go</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Copy the duties and requirements into one list.</strong> Paste every bullet, one per line. Ignore the company description and the benefits; they say nothing about the loop.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · the raw list</span>Write SQL against our event tables
+Design and read A/B tests for launches
+Choose metrics for new features
+Explain findings to product managers
+Push back when a request will not answer the question
+Turn loosely defined questions into analyses
+Own the quality of the data you report
+Learn quickly from analyses that did not land</div>
+      </div>
+      <div class="step">
+        <p><strong>Underline the verb in each line.</strong> The verb is what someone will watch you do or ask you to evidence. Adjectives such as "strong", "excellent" and "passionate" are not competencies; skip them.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · verbs</span>write SQL · design, read tests · choose metrics · explain
+push back · turn questions into analyses · own quality · learn</div>
+      </div>
+      <div class="step">
+        <p><strong>Name six to eight competencies, each something a round can see.</strong> Merge duplicates, split anything that hides two skills. Ren ends with eight.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · competencies</span>1 SQL and data wrangling         5 Disagreeing and pushing back
+2 Experiment design and stats     6 Turning a vague ask into a question
+3 Metric choice and product sense 7 Learning from a mistake
+4 Explaining results              8 Data quality and rigour</div>
+      </div>
+      <div class="step">
+        <p><strong>Map each competency to the rounds that will read it.</strong> Use what the recruiter told you about the loop; if you know nothing yet, assume the common shape in Part 1 and correct it after the screen.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · rounds</span>SQL round:        1, 8
+Stats round:      2
+Product case:     3, 6
+Behavioural:      4, 5, 6, 7 (and any of the rest)
+Take-home:        1, 4, 8</div>
+      </div>
+      <div class="step">
+        <p><strong>Rate yourself on each, honestly: strong, thin or missing.</strong> Strong means you have a specific example with an action you took and a result you can state. Thin means you have done it but cannot yet tell it crisply. Missing means you have no example at all.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · Ren's ratings</span>1 SQL ............ strong   5 Pushing back ..... strong
+2 Experiments .... thin     6 Vague asks ....... thin
+3 Metric choice .. thin     7 From a mistake ... strong
+4 Explaining ..... strong   8 Data quality ..... strong</div>
+      </div>
+      <div class="step">
+        <p><strong>Turn the ratings into a prep plan with hours.</strong> Thin and missing competencies get most of the time. Strong ones get one rehearsal each. Put the plan on one page and date it.</p>
+        <div class="prompt-box good"><span class="label">★ Step 6 · the plan</span>Week 1  stories for 2, 3, 6 (session 2); SQL traps drill (session 3)
+Week 2  bench practice (session 4); stats and product case (session 5)
+Week 3  take-home rehearsal, questions to ask, review routine (session 6)
+One rehearsal each for 1, 4, 5, 7, 8</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Check the plan against the job, not against your fears.</strong> It is tempting to spend the hours on whatever scares you most. Read the plan back against step 4: does every thin competency that a round actually reads get time? Anything you are worried about that no round reads can wait.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 2</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Do the six steps on your own job description.</strong> End with eight competencies, a round for each, and a rating.</li>
+      <li><strong>Ask about the loop.</strong> If you have a recruiter screen coming, prepare one question about what each round focuses on.</li>
+      <li><strong>Find your thinnest competency</strong> and write down, in one line, any situation where you did something like it, at work or outside it.</li>
+      <li><strong>Bring a list of every story you can think of</strong>, titles only. Session 2 turns it into a bank.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 1 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · Ren has two weeks before a loop with a SQL round, a product case and two behavioural conversations. What does Part 1 suggest about where the hours go?</p>
+      <button class="qopt" type="button">A · Mostly SQL puzzles, since technical rounds decide data interviews</button>
+      <button class="qopt" type="button">B · Equal time per round, four ways</button>
+      <button class="qopt" type="button">C · By competency: thin competencies first, weighted by how many rounds read them, which puts real time on stories because the behavioural rounds read most competencies</button>
+      <button class="qopt" type="button">D · Memorising answers to common questions found online</button>
+      <p class="qwhy">Rounds read competencies, and one competency is often read in several rooms. The behavioural conversations read the widest set, so a story bank pays off across the loop. A treats one round as the loop, B ignores Ren's ratings, and D prepares answers without knowing the competencies.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">2 · Which statement about the selection research is accurate?</p>
+      <button class="qopt" type="button">A · Sackett et al. (2022) put structured interviews first at .42 and unstructured at .19; their critics dispute how much to correct the numbers, mostly for cognitive ability, but not that structured beats unstructured</button>
+      <button class="qopt" type="button">B · Schmidt and Hunter's 1998 numbers are settled and still current</button>
+      <button class="qopt" type="button">C · The 2022 re-analysis showed interviews do not predict performance</button>
+      <button class="qopt" type="button">D · Unstructured interviews are better because they are more natural</button>
+      <p class="qwhy">The 2022 re-analysis lowered most estimates and moved structured interviews to the top. Oh, Le and Roth and Ones and Viswesvaran argue the corrections were cut too far, with cognitive ability at the centre of the dispute. In both sets of numbers structured interviews predict better than unstructured ones.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">3 · A friend says "interviewers decide in the first four minutes, so just nail the opening". What does the trail show?</p>
+      <button class="qopt" type="button">A · True: Ambady and Rosenthal proved it for job interviews</button>
+      <button class="qopt" type="button">B · True: Frieder and colleagues found almost all decisions came in four minutes</button>
+      <button class="qopt" type="button">C · False: first impressions have no effect in interviews</button>
+      <button class="qopt" type="button">D · Frieder and colleagues found structure went with longer decisions, and a reported breakdown puts most decisions after five minutes; Ambady and Rosenthal studied teachers on silent video, not hiring</button>
+      <p class="qwhy">The minute counts do not come from where they are said to. First impressions still matter, which is why C overcorrects, but an opening line does not replace evidence for each competency in a structured interview.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Schmidt and Hunter (1998), Psychological Bulletin 124(2)</span><span class="note">85 years, 19 procedures; structured .51, unstructured .38, cognitive ability .51, work sample .54, job knowledge .48; read in full</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Sackett, Zhang, Berry and Lievens (2022), Journal of Applied Psychology 107(11)</span><span class="note">Structured .42 first, job knowledge .40, work sample .33, cognitive ability .31, unstructured .19, and the range-restriction argument; read in full</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Oh, Le and Roth (2023); Sackett et al. (2023) reply; Ones and Viswesvaran (2023)</span><span class="note">The disagreement; the first two read as abstracts only, the third in full</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Campion, Palmer and Campion (1997), Personnel Psychology 50(3)</span><span class="note">Fifteen components of structure as listed by Levashina et al. (2014), Personnel Psychology 67(1); the 1997 original was not read</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Frieder, Van Iddekinge and Raymark (2016); Ambady and Rosenthal (1993)</span><span class="note">Frieder abstract read, its minute-by-minute breakdown reported; Ambady and Rosenthal read in full</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Ren and job description A</span><span class="note">Constructed for teaching; no real employer or process is described</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 1 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>A loop is measurements</b><span>Each round reads a few competencies; the job description names them.</span></div>
+      <div class="cheat-item"><b>Competencies are visible</b><span>Something a round can watch or ask you to evidence, named from the verbs.</span></div>
+      <div class="cheat-item"><b>Structured beats unstructured</b><span>.51 vs .38 in 1998, .42 vs .19 in 2022. The size is argued; the order is not.</span></div>
+      <div class="cheat-item"><b>Answer the competency asked</b><span>Each answer is rated against its own rubric line; evidence for a different one earns nothing there.</span></div>
+      <div class="cheat-item"><b>Minute myths</b><span>"Four minutes" and "thirty seconds" do not come from hiring studies that say so.</span></div>
+      <div class="cheat-item"><b>The prep plan</b><span>Eight competencies, rounds, strong/thin/missing, hours to the thin ones.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Ren's plan says the behavioural rounds hear most of the competencies, and three of them are thin. Session 2 builds the answer: a bank of eight stories, each told in situation, task, action and result, tagged against every competency it can honestly evidence, and short enough to finish.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 1 of 6 · learn-interview-prep-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="../index.html">← Course home</a> &nbsp;·&nbsp; <a href="02-a-story-bank.html">Next: A story bank that covers the job →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=15"></script>
+</body>
+</html>

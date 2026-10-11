@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 4 of 6. Six interview-style SQL questions run for real in your browser on 2,085 Olist orders, checked against a reference result set with the first differing row printed, and five planted traps. Then Ren's constructed story bank crossed with a job description: coverage from 37.5 to 93.8 percent, the one-story anti-lever, and a break button.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The practice-round bench - learn interview prep with phoebe">
+<meta property="og:description" content="Session 4 of 6. A real SQL round in your browser with a strict checker, and a story-bank coverage matrix that can report a worse number.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/courses/04-the-practice-round-bench.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The practice-round bench - learn interview prep with phoebe">
+<meta name="twitter:description" content="Session 4 of 6. Six SQL questions on real orders, and a story-bank coverage matrix.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 4 · The practice-round bench - learn interview prep with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=15">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-interview-prep-with-phoebe</a> / Session 4 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Interview Prep with Phoebe · Session 4 of 6</div>
+    <h1>The <span class="accent">practice-round</span> bench</h1>
+    <p class="sub">Two rounds decide most data interviews before anyone talks about culture: the technical round, where your query either returns the right rows or does not, and the behavioural round, where you either have a story for the question or improvise one. Tonight both are practised against something that keeps score. The SQL half runs six interview-style questions in a real SQLite engine inside this page, on 2,085 real orders, and checks your result set against the reference the way a strict interviewer would. The story half crosses Ren's constructed story bank with a job description and computes how much of the job your stories actually cover. Both halves can report a worse number, and both show you exactly where.</p>
+    <div class="chip-row">
+      <span class="chip level">🔴 Bench night</span>
+      <span class="chip audience">Bring your own story list</span>
+      <span class="chip audience">SQL typed live in the page</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:2">3-10 · How the checker reads you</span>
+      <span class="a3" style="flex:6">10-38 · The SQL round, then the story bank</span>
+      <span class="a4" style="flex:2">38-45 · Read the numbers, Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Ren, the constructed analyst moving into a data science role, has a technical screen on Thursday and a behavioural loop the week after. Sessions 1 to 3 built the parts: a job description read into competencies, a bank of eight stories, and a habit of reading a SQL question for its traps before typing. Tonight Ren practises against a checker instead of a mirror. The SQL data is real: a seeded sample of the public Olist e-commerce dataset, 2,000 people and every order they placed between October 2016 and September 2018, with ids renumbered and no names or text. The story bank and both job descriptions are constructed, and the widget says so on every number.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">real = computed from the Olist rows in this page</span>
+      <span class="pill">constructed = Ren's stories and fits, labelled</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> Six SQL questions attempted against a strict result-set checker, the five planted traps seen failing with the first wrong row printed, a coverage matrix for your own story bank, the honest size of what tagging and trimming buy, why one great story stretched across every question is the most expensive habit in a behavioural loop, and what happens to a bank when the job description changes.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers how the bench checks an answer</span>
+      <h2>A result set is right or it is not</h2>
+      <span class="tag concept">7 min live</span>
+    </div>
+    <p class="lede">An interviewer reading your query on a shared screen is checking one thing first: does it return the rows the question asked for. The bench does the same, mechanically. It runs a reference query, runs yours, and compares the two result sets value by value. It does not care how you wrote the query, what you named the columns, or whether you used a join or a subquery. It cares about the rows.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The checker drawn as four steps left to right. Step 1, two result sets, the reference and yours. Step 2, same number of columns, or fail and say how many. Step 3, sort both sides when the question allows any row order, keep them as returned when it asks for an order. Step 4, highlighted in coral, walk the rows together and stop at the first row that differs, printing both sides. Below, the Q2 trap as run in this page: expected 802, got 850 at row 1.">
+        <defs>
+          <filter id="p4aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="41" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p4aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p4aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p4aH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p4aL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p4aS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p4aB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p4aA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p4aN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p4aH" x="30" y="26">WHAT THE CHECKER DOES WITH YOUR QUERY, IN ORDER</text>
+
+        <g filter="url(#p4aSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="60" width="180" height="130" rx="10" transform="rotate(-0.5 120 125)" fill="#FFFFFF"/>
+          <rect x="46" y="72" width="66" height="80" rx="3" fill="url(#p4aHc)"/>
+          <rect x="128" y="72" width="66" height="80" rx="3" fill="#FFFFFF"/>
+          <path d="M46 92 L112 92 M46 112 L112 112 M46 132 L112 132" stroke-width="1.2"/>
+          <path d="M128 92 L194 92 M128 112 L194 112 M128 132 L194 132" stroke-width="1.2"/>
+          <rect x="240" y="60" width="180" height="130" rx="10" transform="rotate(0.5 330 125)" fill="#FFFFFF"/>
+          <rect x="450" y="60" width="180" height="130" rx="10" transform="rotate(-0.4 540 125)" fill="#FFFFFF"/>
+          <rect x="660" y="60" width="190" height="130" rx="10" transform="rotate(0.4 755 125)" fill="#FBECEA" stroke="#C2453A"/>
+          <path d="M214 125 L236 125" marker-end="url(#p4aAr)"/>
+          <path d="M424 125 L446 125" marker-end="url(#p4aAr)"/>
+          <path d="M634 125 L656 125" marker-end="url(#p4aAr)"/>
+          <rect x="30" y="216" width="820" height="40" rx="8" transform="rotate(-0.2 440 236)" fill="#FFFFFF"/>
+        </g>
+
+        <text class="p4aA" x="30" y="52">1 · TWO RESULT SETS</text>
+        <text class="p4aA" x="240" y="52">2 · SHAPE</text>
+        <text class="p4aA" x="450" y="52">3 · ROW ORDER</text>
+        <text class="p4aA" x="660" y="52">4 · ROW BY ROW</text>
+        <text class="p4aS" x="79" y="172" text-anchor="middle">reference</text>
+        <text class="p4aS" x="161" y="172" text-anchor="middle">yours</text>
+        <text class="p4aL" x="256" y="104">Same number of</text>
+        <text class="p4aL" x="256" y="120">columns?</text>
+        <text class="p4aS" x="256" y="152">no: fail, and say</text>
+        <text class="p4aS" x="256" y="168">how many each has</text>
+        <text class="p4aL" x="466" y="96">Any row order:</text>
+        <text class="p4aS" x="466" y="112">sort both sides</text>
+        <text class="p4aL" x="466" y="144">Order asked for:</text>
+        <text class="p4aS" x="466" y="160">keep as returned</text>
+        <text class="p4aB" x="676" y="96">Walk the rows together</text>
+        <text class="p4aS" x="676" y="116">stop at the first row</text>
+        <text class="p4aS" x="676" y="132">that differs and print</text>
+        <text class="p4aS" x="676" y="148">both sides of it, plus</text>
+        <text class="p4aS" x="676" y="164">the two row counts</text>
+        <text class="p4aN" x="46" y="241">Q2 trap, run in this page: expected [802], got [850] at row 1. The join added 48 rows, one per extra item.</text>
+
+        <text class="p4aN" x="30" y="284">Values are compared to six decimals. Column names are ignored; column order is not.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the checker never reads your SQL, only its output, which is exactly what a result-focused interviewer does first</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Why the checker is strict, and what it ignores<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Strict on rows.</strong> One extra row, one missing row, or one average off in the second decimal is a fail. That is deliberate. A screen that asks "how many orders" has one right number, and an answer that is close is the answer of someone who did not check. Interviewers who run your query see the same thing.</p>
+        <p><strong>Relaxed on style.</strong> The checker ignores column names and accepts any query that produces the reference rows: a join with <code>COUNT(DISTINCT ...)</code>, an <code>EXISTS</code> subquery, or a common table expression all pass the same question. Row order is ignored unless the question asks for an order, and then it is checked. Column order is checked, because the question names the columns in order.</p>
+        <p><strong>The first differing row.</strong> When you fail, the bench prints the first row where your result and the reference part company, with both sides sorted the same way. That one row is usually enough to find the bug: a count that is too high points at a join, a share that is too low points at NULLs, a missing seller points at a filter in the wrong place.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The data, and what it can and cannot tell you<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The Brazilian E-Commerce Public Dataset by Olist is published on Kaggle under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 licence. The sample here draws 2,000 people with a fixed seed and keeps every order they placed: 2,085 orders, 2,359 order items from 775 sellers. Ids are renumbered; there are no names, reviews or text. Drawing people rather than orders keeps repeat customers repeat, which question 6 depends on.</p>
+        <p>The engine is SQLite compiled to WebAssembly (sql.js 1.10.3, which reports SQLite 3.45.2). The canon result for every question was produced twice, once by that engine and once by Python's own sqlite3 module running SQLite 3.51.1, and the two agree on all 356 values compared. Nothing you type leaves the page.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The answer that was almost right.</strong> A familiar pattern on live SQL screens: the candidate writes a clean join, reads out a number, and moves on. The interviewer asks one question, "how many rows does the join return before you count?", and the number turns out to be counted per item, not per order. The query was fluent and the answer was wrong. Checking the grain of a join before aggregating is the habit session 3 drilled, and question 2 is where it gets tested.</p>
+    </div>
+  </section>
+
+  <section class="section" id="bench">
+    <div class="section-kicker">
+      <span class="klabel">Build-along · the SQL round</span>
+      <h2>Six questions, a real engine, one strict checker</h2>
+      <span class="tag demo">★ 16 min · the main event</span>
+    </div>
+    <p class="lede">Work through the questions in order. For each one, read the question twice, write your query from the starter, and press Run and check before looking at anything else. When a question carries a planted trap, press Load the trap afterwards and read the first differing row out loud: say which line of the trap query produced it. Q1 is a warm-up with no trap. Q5 is the one where row order is checked.</p>
+
+    <div id="ip-sql-bench"></div>
+
+    <div class="callout tip">
+      <p><strong>Read it in this order.</strong> The verdict line first, then the row counts, then the first differing row. A fail that says "you returned 850, the reference returns 802" is already a diagnosis: something multiplied rows. Do not reach for the reference answer until you can say in one sentence why your result differs.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the planted traps, measured</span>
+      <h2>Five traps, and how small the damage looks</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">Each trap query below is one a fluent candidate could write in a hurry, and each runs without an error. The numbers are the ones the bench prints when you press Load the trap, and an independent Python run printed the same ones. Look at how close most of them are to the right answer. That closeness is why they survive a quick glance.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five small paired bar charts, reference against trap, each on its own scale from zero. Q2 join duplicates: 802 orders against 850. Q3 NULLs in the average: 0.943 against 0.916. Q4 WHERE against HAVING: 24 sellers against 18. Q5 date range: 111 December 2017 orders against 109. Q6 wrong id: 57 repeat customers against 0, highlighted.">
+        <defs>
+          <filter id="p4bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="47" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .p4bH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p4bL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p4bS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p4bV { font: 800 12px Inter, sans-serif; fill: #1B3570; }
+          .p4bB { font: 800 12px Inter, sans-serif; fill: #8E2A22; }
+          .p4bN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p4bH" x="30" y="26">REFERENCE AGAINST TRAP, AS PRINTED BY THE BENCH</text>
+
+        <g filter="url(#p4bSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M70 170 L198 170 M228 170 L356 170 M386 170 L514 170 M544 170 L672 170 M702 170 L830 170"/>
+          <rect x="90" y="76" width="36" height="94" rx="3" fill="#2A4FA0"/>
+          <rect x="142" y="70" width="36" height="100" rx="3" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="248" y="70" width="36" height="100" rx="3" fill="#2A4FA0"/>
+          <rect x="300" y="73" width="36" height="97" rx="3" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="406" y="70" width="36" height="100" rx="3" fill="#2A4FA0"/>
+          <rect x="458" y="95" width="36" height="75" rx="3" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="564" y="70" width="36" height="100" rx="3" fill="#2A4FA0"/>
+          <rect x="616" y="72" width="36" height="98" rx="3" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="722" y="70" width="36" height="100" rx="3" fill="#2A4FA0"/>
+        </g>
+
+        <text class="p4bL" x="134" y="48" text-anchor="middle">Q2 join duplicates</text>
+        <text class="p4bL" x="292" y="48" text-anchor="middle">Q3 NULL in average</text>
+        <text class="p4bL" x="450" y="48" text-anchor="middle">Q4 WHERE vs HAVING</text>
+        <text class="p4bL" x="608" y="48" text-anchor="middle">Q5 date range</text>
+        <text class="p4bL" x="766" y="48" text-anchor="middle">Q6 wrong id</text>
+        <text class="p4bV" x="108" y="70" text-anchor="middle">802</text>
+        <text class="p4bB" x="160" y="64" text-anchor="middle">850</text>
+        <text class="p4bV" x="266" y="64" text-anchor="middle">.943</text>
+        <text class="p4bB" x="318" y="67" text-anchor="middle">.916</text>
+        <text class="p4bV" x="424" y="64" text-anchor="middle">24</text>
+        <text class="p4bB" x="476" y="89" text-anchor="middle">18</text>
+        <text class="p4bV" x="582" y="64" text-anchor="middle">111</text>
+        <text class="p4bB" x="634" y="66" text-anchor="middle">109</text>
+        <text class="p4bV" x="740" y="64" text-anchor="middle">57</text>
+        <text class="p4bB" x="792" y="162" text-anchor="middle">0</text>
+        <text class="p4bS" x="108" y="186" text-anchor="middle">ref</text>
+        <text class="p4bS" x="160" y="186" text-anchor="middle">trap</text>
+        <text class="p4bS" x="266" y="186" text-anchor="middle">ref</text>
+        <text class="p4bS" x="318" y="186" text-anchor="middle">trap</text>
+        <text class="p4bS" x="424" y="186" text-anchor="middle">ref</text>
+        <text class="p4bS" x="476" y="186" text-anchor="middle">trap</text>
+        <text class="p4bS" x="582" y="186" text-anchor="middle">ref</text>
+        <text class="p4bS" x="634" y="186" text-anchor="middle">trap</text>
+        <text class="p4bS" x="740" y="186" text-anchor="middle">ref</text>
+        <text class="p4bS" x="792" y="186" text-anchor="middle">trap</text>
+        <text class="p4bS" x="134" y="206" text-anchor="middle">orders</text>
+        <text class="p4bS" x="292" y="206" text-anchor="middle">share on time</text>
+        <text class="p4bS" x="450" y="206" text-anchor="middle">sellers listed</text>
+        <text class="p4bS" x="608" y="206" text-anchor="middle">Dec 2017 orders</text>
+        <text class="p4bS" x="766" y="206" text-anchor="middle">repeat customers</text>
+
+        <text class="p4bN" x="30" y="248">Each pair on its own scale from zero. Only Q6 looks wrong at a glance; the other four look plausible.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - four of the five traps produce an answer within shouting distance of the truth, which is why a number alone proves nothing</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Join duplicates and NULLs: Q2 and Q3<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Q2.</strong> Joining orders to order items returns one row per item. Of the 2,085 orders, 203 have more than one item, so any count taken after the join is a count of items unless you say <code>COUNT(DISTINCT o.order_id)</code>. The trap counts 850; the right answer is 802 orders with at least one item priced above 100. Six percent too high, and fluent.</p>
+        <p><strong>Q3.</strong> 59 orders in the sample never arrived, so their <code>delivered_date</code> is NULL. A comparison with NULL is neither true nor false; it is NULL, and <code>CASE WHEN ... THEN 1 ELSE 0</code> sends it to the ELSE branch. The trap scores every undelivered order as late and reports 0.916 on time; restricted to delivered orders, as the question asks, the answer is 0.943. SQLite's own documentation says that <code>avg()</code> ignores NULL inputs, which is exactly why writing the CASE so that undelivered orders produce NULL, or filtering them out, gives the right denominator.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Filter before or after grouping: Q4<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The question asks for sellers whose average price over all their items is above 150, among sellers with at least five items. The trap filters <code>WHERE price &gt; 150</code> first. That throws away each seller's cheap items before the average is taken, so every surviving average is above 150 by construction, and "at least five items" becomes "at least five pricey items".</p>
+        <p>The reference lists 24 sellers; the trap lists 18. Only 14 appear in both: the trap misses 10 real answers, adds 4 sellers who do not qualify, and of the 14 it shares, 8 carry an inflated average. Seller 1286, for one, averages 239.72 over all items and 415.00 in the trap. WHERE filters rows before grouping; HAVING filters groups after. Say that sentence out loud in the interview while you write the query, and the interviewer hears that you know which one the question needs.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The last day of the year and the id that is not a person: Q5 and Q6<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Q5.</strong> <code>purchase_ts</code> is a timestamp stored as text. <code>BETWEEN '2017-01-01' AND '2017-12-31'</code> compares strings, and '2017-12-31 09:14:00' sorts after '2017-12-31', so every order placed on 31 December falls outside the range. In this sample that is 2 orders: December reads 109 instead of 111. Eleven months are right and one is quietly short, which is the worst kind of wrong. A half-open range, <code>&gt;= '2017-01-01' AND &lt; '2018-01-01'</code>, has no such edge.</p>
+        <p><strong>Q6.</strong> In this dataset <code>customer_id</code> is issued with each order, so no customer_id ever has two orders, and the trap reports 0 repeat customers. The person is <code>customer_unique_id</code>: 57 people placed more than one order. The schema note says so in one line, which is the point. In an interview, asking "what does one row of this table represent, and what identifies a person?" before writing anything is the move that catches this, and it costs ten seconds.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Ren's Thursday screen, constructed.</strong> Ren passes Q1, Q2 and Q6 on the first run, fails Q4 with the WHERE version, reads the first differing row (seller 904 expected, seller 966 returned), and fixes it in under a minute by moving the condition to HAVING. Q5 passes because Ren wrote the half-open range out of habit. The point is not a perfect score. It is that every fail came with a row Ren could reason about out loud.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the story-bank coverage rules</span>
+      <h2>How a story bank becomes a coverage number</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Session 2 built the bank; this part scores it. Every competency in the job description is a row, every story a column, and each cell holds how well that story evidences that competency: strong, thin, or not at all. The fits are Ren's constructed self-assessment. The arithmetic on top of them is real, and the Python reference run computed every number below independently of the page.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A small coverage matrix. Five competency rows: SQL, experiments, metric choice, vague asks, pushing back. Three story columns: S1, S2, S6. Filled dots mark strong evidence, hatched dots thin evidence. SQL has S1 strong; experiments has S2 strong; metric choice has S2 thin; vague asks has nothing; pushing back has S2 and S6 strong. An arrow leads to the best-evidence column reading covered, covered, thin, missing, covered, and then to the formula: coverage equals 3 plus half of 1, over 5, which is 70 percent. The missing row is highlighted in coral.">
+        <defs>
+          <filter id="p4cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="53" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p4cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p4cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p4cH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p4cL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p4cS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p4cB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p4cA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p4cV { font: 800 18px Inter, sans-serif; fill: #1B3570; }
+          .p4cN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p4cH" x="30" y="26">FROM CELLS TO ONE NUMBER: THE SCORING RULE, ON A SMALL BANK</text>
+
+        <g filter="url(#p4cSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="200" y="72" width="240" height="200" rx="6" transform="rotate(-0.3 320 172)" fill="#FFFFFF"/>
+          <path d="M200 112 L440 112 M200 152 L440 152 M200 192 L440 192 M200 232 L440 232" stroke-width="1.2"/>
+          <path d="M280 72 L280 272 M360 72 L360 272" stroke-width="1.2"/>
+          <rect x="204" y="196" width="232" height="32" rx="4" fill="#FBECEA" stroke="#C2453A"/>
+          <circle cx="240" cy="92" r="8" fill="#2A4FA0"/>
+          <circle cx="320" cy="132" r="8" fill="#2A4FA0"/>
+          <circle cx="320" cy="172" r="8" fill="url(#p4cHc)"/>
+          <circle cx="320" cy="252" r="8" fill="#2A4FA0"/>
+          <circle cx="400" cy="252" r="8" fill="#2A4FA0"/>
+          <path d="M452 172 L486 172" marker-end="url(#p4cAr)"/>
+          <path d="M600 172 L634 172" marker-end="url(#p4cAr)"/>
+          <rect x="648" y="122" width="200" height="100" rx="10" transform="rotate(0.6 748 172)" fill="#EEF2FA" stroke="#2A4FA0"/>
+        </g>
+
+        <text class="p4cA" x="240" y="64" text-anchor="middle">S1</text>
+        <text class="p4cA" x="320" y="64" text-anchor="middle">S2</text>
+        <text class="p4cA" x="400" y="64" text-anchor="middle">S6</text>
+        <text class="p4cA" x="500" y="64">BEST EVIDENCE</text>
+        <text class="p4cL" x="190" y="96" text-anchor="end">SQL</text>
+        <text class="p4cL" x="190" y="136" text-anchor="end">Experiments</text>
+        <text class="p4cL" x="190" y="176" text-anchor="end">Metric choice</text>
+        <text class="p4cL" x="190" y="216" text-anchor="end">Vague asks</text>
+        <text class="p4cL" x="190" y="256" text-anchor="end">Pushing back</text>
+        <text class="p4cL" x="500" y="96">covered</text>
+        <text class="p4cL" x="500" y="136">covered</text>
+        <text class="p4cS" x="500" y="176">thin</text>
+        <text class="p4cB" x="500" y="216">missing</text>
+        <text class="p4cL" x="500" y="256">covered</text>
+        <text class="p4cS" x="664" y="146">coverage =</text>
+        <text class="p4cL" x="664" y="168">(3 + 0.5 x 1) / 5</text>
+        <text class="p4cV" x="664" y="200">= 70%</text>
+
+        <text class="p4cN" x="30" y="304">Three of Ren's stories, tagged, on five competencies. The bench scores all eight stories on eight.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a row is only as strong as its best story, and an empty row costs a whole point no matter how good the other stories are</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The rules, stated once<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Status.</strong> For each competency the best evidence in the bank decides: a strong story makes it covered, a thin one makes it thin, nothing makes it missing. <strong>Coverage</strong> is covered plus half of thin, divided by the number of competencies. <strong>Tagged or untagged.</strong> An untagged bank uses each story only for the competency it was written for; a tagged bank uses each story for every competency it can honestly evidence, which is the session 2 exercise. <strong>The story you tell</strong> is the shortest one at the best level. <strong>Fits in 2 minutes</strong> counts the competencies that have evidence and whose chosen story runs 120 seconds or less.</p>
+        <p>The two-minute line is a common coaching rule of thumb, not a research finding; no study behind a particular answer length was found, and the widget says so. It is in the bench because a behavioural loop has a clock, and a four-minute story eats the next question.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What the matrix cannot know<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Every fit in the matrix is a judgement, and here it is Ren's own. A candidate's self-assessment is generous in predictable places: a story you are proud of feels strong for more competencies than it really evidences. The habit worth building is to mark a fit strong only when the story contains a specific action you took and a result you can state, the situation, task, action and result shape session 2 used. The bench's arithmetic is only as honest as those marks.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="story-bench">
+    <div class="section-kicker">
+      <span class="klabel">Build-along · the story bank</span>
+      <h2>Eight stories against eight competencies</h2>
+      <span class="tag demo">★ 12 min · climb the ladder</span>
+    </div>
+    <p class="lede">The bench opens on the top rung, eight stories tagged and trimmed, against job description A, a constructed product analytics role. Start instead at the first rung and climb: three stories, five, eight tagged, eight trimmed. At each rung say what changed in the matrix. Then press the anti-lever and read the two coverage numbers side by side. Last, press the break button and swap the job description.</p>
+
+    <div id="ip-story-bench"></div>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 376" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Six horizontal bars of honest coverage. 3 stories untagged 37.5 percent, 0 of 8 answers fit in two minutes. 5 stories untagged 62.5 percent, 0 of 8. 8 stories tagged 93.8 percent, 0 of 8. 8 tagged and trimmed 93.8 percent, 8 of 8. Stretch one great story, the anti-lever: claimed 100 percent drawn as a dashed outline, honest 31.3 percent in coral, one story told 8 times. Swap to job description B, the break button: 62.5 percent, 6 of 8.">
+        <defs>
+          <filter id="p4dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="59" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p4dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+        </defs>
+        <style>
+          .p4dH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p4dL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p4dS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p4dB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p4dA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p4dV { font: 800 12px Inter, sans-serif; fill: #1B3570; }
+          .p4dW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .p4dN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p4dH" x="30" y="26">HONEST COVERAGE OF JOB DESCRIPTION A, RUNG BY RUNG</text>
+        <text class="p4dA" x="760" y="48">IN 2 MIN</text>
+
+        <g filter="url(#p4dSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="260" y="60" width="180" height="30" rx="4" fill="url(#p4dHc)"/>
+          <rect x="260" y="108" width="300" height="30" rx="4" fill="url(#p4dHc)"/>
+          <rect x="260" y="156" width="450" height="30" rx="4" fill="#C9D6F0"/>
+          <rect x="260" y="204" width="450" height="30" rx="4" fill="#2A4FA0"/>
+          <rect x="260" y="252" width="480" height="30" rx="4" stroke="#C2453A" stroke-dasharray="6 4"/>
+          <rect x="260" y="256" width="150" height="22" rx="3" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="260" y="300" width="300" height="30" rx="4" fill="#EEF2FA" stroke="#2A4FA0"/>
+        </g>
+
+        <text class="p4dL" x="240" y="74" text-anchor="end">3 stories, untagged</text>
+        <text class="p4dS" x="240" y="88" text-anchor="end">headline use only</text>
+        <text class="p4dL" x="240" y="122" text-anchor="end">5 stories, untagged</text>
+        <text class="p4dS" x="240" y="136" text-anchor="end">headline use only</text>
+        <text class="p4dL" x="240" y="170" text-anchor="end">8 stories, tagged</text>
+        <text class="p4dS" x="240" y="184" text-anchor="end">every honest fit used</text>
+        <text class="p4dL" x="240" y="218" text-anchor="end">8 tagged, trimmed</text>
+        <text class="p4dS" x="240" y="232" text-anchor="end">each cut to 115 s</text>
+        <text class="p4dL" x="240" y="266" text-anchor="end">Stretch one story</text>
+        <text class="p4dB" x="240" y="280" text-anchor="end">anti-lever</text>
+        <text class="p4dL" x="240" y="314" text-anchor="end">Swap to JD B</text>
+        <text class="p4dS" x="240" y="328" text-anchor="end">break button</text>
+        <text class="p4dV" x="450" y="80">37.5%</text>
+        <text class="p4dV" x="570" y="128">62.5%</text>
+        <text class="p4dV" x="660" y="176" text-anchor="end">93.8%</text>
+        <text class="p4dW" x="660" y="224" text-anchor="end">93.8%</text>
+        <text class="p4dB" x="420" y="272">honest 31.3%</text>
+        <text class="p4dS" x="690" y="272" text-anchor="end">claimed 100%</text>
+        <text class="p4dV" x="570" y="320">62.5%</text>
+        <text class="p4dS" x="760" y="80">0 of 8</text>
+        <text class="p4dS" x="760" y="128">0 of 8</text>
+        <text class="p4dS" x="760" y="176">0 of 8</text>
+        <text class="p4dL" x="760" y="224">8 of 8</text>
+        <text class="p4dB" x="760" y="272">1 story x 8</text>
+        <text class="p4dS" x="760" y="320">6 of 8</text>
+
+        <text class="p4dN" x="30" y="358">Stories, fits and lengths are constructed; every percentage is computed by the bench and the Python reference.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - tagging buys the coverage, trimming buys the clock, and the stretched story buys nothing but the feeling of being ready</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>What each rung buys<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>3 to 5 stories, untagged:</strong> 37.5 to 62.5 percent. Each new story adds the one competency it was written for. <strong>8 stories, tagged:</strong> 93.8 percent, 7 covered and 1 thin, told with 6 distinct stories. Tagging is the big jump, and it costs no new stories: it is the work of asking, for every story you already have, which other questions it can honestly answer. The one thin row, turning a vague ask into a question, is the gap the bank cannot fill by rearranging. The fix is a new story, not a cleverer tag.</p>
+        <p><strong>Trimmed:</strong> coverage does not move, and 0 of 8 answers fitting in two minutes becomes 8 of 8. Trimming changes nothing about what you can evidence and everything about whether you get to finish saying it.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The anti-lever: one great story, stretched<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Ren's best story is the A/B test that was stopped early: a clear conflict, a statistical point, a good ending. The temptation is to tell it for every question. <strong>The model:</strong> the same story answers all eight competencies. Claimed coverage reads 100 percent, because every question got an answer. Honest coverage is 31.3 percent: the story is strong evidence for experiments and for pushing back, thin for metric choice, and evidence of nothing for the other five. Distinct stories told: 1. Most-reused story: 8 of 8.</p>
+        <p>The honest nuance: a strong story told twice in a loop is fine, and the matrix itself picked one story for two rows on the top rung. The cost of stretching is not the repetition. It is that five competencies were asked about and none was evidenced, and a structured interviewer scoring each question against its own rubric scores those five low, however good the story was.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The break button: a different job<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A bench that can only go up is measuring nothing. The break button keeps Ren's bank exactly as it is and swaps the job description for B, a constructed machine learning engineer role. Coverage falls from 93.8 to 62.5 percent: 4 covered, 2 thin, and 2 missing, ML system design and deploying models, competencies none of an analyst's stories evidence. Stretching the A/B test story across job description B scores 0 percent honest coverage, because it fits none of the eight.</p>
+        <p>The lesson is the session 2 habit in reverse: a bank is built for a job description, and a new job description means a new pass of tagging and, usually, one or two new stories. Reusing last month's prep for a different role is the break button pressed by accident.</p>
+      </div>
+    </details>
+
+    <div class="callout tip">
+      <p><strong>Do it for yourself tonight.</strong> Write your own competencies down the side of a page and your stories across the top, mark each cell strong, thin or blank, and apply the rule. Your numbers will differ. The row you leave blank is the story you write this week.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 5</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Finish the six.</strong> Pass every SQL question with a query you wrote. For the three you found hardest, write one sentence each on what the first differing row told you.</li>
+      <li><strong>Write a second correct answer to Q2.</strong> If you used <code>COUNT(DISTINCT ...)</code>, write it with <code>EXISTS</code>, and confirm the checker passes both.</li>
+      <li><strong>Score your own bank.</strong> Your competencies against your stories, by the rules in Part 3. Note your coverage and your thinnest row.</li>
+      <li><strong>Time your two longest stories</strong> out loud. If either runs past two minutes, cut it and time it again.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 4 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">1 · Your Q2 query returns 850 and the checker says the reference returns 802. What is the most likely bug?</p>
+      <button class="qopt" type="button">A · The join to order items returns one row per item, so orders with several pricey items are counted more than once</button>
+      <button class="qopt" type="button">B · The price filter should be in HAVING</button>
+      <button class="qopt" type="button">C · Undelivered orders are being counted as late</button>
+      <button class="qopt" type="button">D · The checker is comparing column names</button>
+      <p class="qwhy">A count that is too high after a join points at the join's grain. 203 of the 2,085 orders have more than one item, and the trap's 48 extra rows come from them. <code>COUNT(DISTINCT o.order_id)</code> or an <code>EXISTS</code> subquery fixes it. The checker ignores column names.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">2 · Stretching one great story across all eight competencies gives claimed coverage 100 percent and honest coverage 31.3 percent. What is the honest way to read this?</p>
+      <button class="qopt" type="button">A · The story is bad and should be dropped</button>
+      <button class="qopt" type="button">B · Telling any story twice in a loop is a mistake</button>
+      <button class="qopt" type="button">C · Every question got an answer, but five competencies got no evidence; a strong story told for the two or three questions it fits is fine, stretched to all eight it leaves most of the job unevidenced</button>
+      <button class="qopt" type="button">D · 31.3 percent is a measured pass rate from real interviews</button>
+      <p class="qwhy">The story is strong evidence for two competencies and thin for one, which is why it is the stretch candidate. The top rung itself reuses a story for two rows. The numbers come from constructed fits and real arithmetic, not from interview outcomes.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">3 · Why does the bench include a break button that swaps the job description?</p>
+      <button class="qopt" type="button">A · To show that Ren is unsuited to machine learning roles</button>
+      <button class="qopt" type="button">B · A bench that can only report a better number measures nothing; swapping the job shows coverage falling, from 93.8 to 62.5 percent, exactly where the stories do not transfer</button>
+      <button class="qopt" type="button">C · To prove the coverage formula is correct</button>
+      <button class="qopt" type="button">D · Because job description A was badly written</button>
+      <p class="qwhy">The break button proves the score responds to the thing it claims to measure. The two missing rows under job description B, ML system design and deploying models, are the ones an analyst's stories cannot evidence: that is a prep gap, not a verdict on the candidate.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Every SQL result on the bench</span><span class="note">Computed in the browser by SQLite 3.45.2 (sql.js 1.10.3) on a seeded sample of the Brazilian E-Commerce Public Dataset by Olist (Kaggle, CC BY-NC-SA 4.0), derived and renumbered; verified against Python sqlite3 (SQLite 3.51.1), 356 values identical</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">SQLite documentation: aggregate functions, NULL handling, SELECT</span><span class="note">Read at source on sqlite.org: avg() ignores NULL inputs; WHERE filters rows before grouping and HAVING filters groups after</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Story-bank coverage</span><span class="note">Ren, both job descriptions, the eight stories, every fit and every length are constructed; the scoring rule is stated on the widget and its arithmetic verified against an independent Python run</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The two-minute answer</span><span class="note">A coaching rule of thumb; no study supporting a particular answer length was found, and it is used here as a stated threshold, not a finding</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 4 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Rows, not style</b><span>A result set is right or wrong. Check the grain before you aggregate.</span></div>
+      <div class="cheat-item"><b>Read the first wrong row</b><span>Too many rows: a join. Too low a share: NULLs. Missing groups: a filter in the wrong place.</span></div>
+      <div class="cheat-item"><b>WHERE then HAVING</b><span>WHERE filters rows before grouping; HAVING filters groups after.</span></div>
+      <div class="cheat-item"><b>Half-open dates</b><span>&gt;= the first day, &lt; the day after the last. BETWEEN loses the last day of timestamps.</span></div>
+      <div class="cheat-item"><b>Tag, then trim</b><span>Tagging took Ren from 62.5 to 93.8 percent coverage; trimming took answers in time from 0 to 8 of 8.</span></div>
+      <div class="cheat-item"><b>Do not stretch one story</b><span>Claimed 100 percent, honest 31.3. Every competency needs its own evidence.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>The SQL round has one right answer. The next two rounds do not: a statistics or experiment question where the interviewer wants your reasoning, and a product case where the metric you choose is the answer. Session 5 takes Ren through both, with the same rule as tonight: say what you are checking before you check it.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 4 of 6 · learn-interview-prep-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="03-the-sql-round.html">← Prev: The SQL round</a> &nbsp;·&nbsp; <a href="05-stats-and-the-product-case.html">Next: Stats, experiments and the product case →</a></span>
+  </footer>
+
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+<script src="../assets/ip-sample.js?v=1"></script>
+<script src="../assets/ip-live.js?v=2"></script>
+<script src="../assets/app.js?v=15"></script>
+</body>
+</html>

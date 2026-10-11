@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 6 of 6. Take-home assignments read as work-sample tests with a time-box and a README, the questions you ask the panel and why they are usually not scored, and the review after every round that feeds your story bank and SQL drill list.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Take-homes, your questions, and the review after - learn interview prep with phoebe">
+<meta property="og:description" content="Session 6 of 6. Time-box the take-home, write the README first, ask to learn the job, and review every round within the hour.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/courses/06-take-homes-and-the-review.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Take-homes, your questions, and the review after - learn interview prep with phoebe">
+<meta name="twitter:description" content="Session 6 of 6. A time-boxed take-home, three kinds of question, and a review loop after every round.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-interview-prep-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 6 · Take-homes, your questions, and the review after - learn interview prep with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=15">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-interview-prep-with-phoebe</a> / Session 6 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Interview Prep with Phoebe · Session 6 of 6</div>
+    <h1>Take-homes, your questions, and the <span class="accent">review</span> after</h1>
+    <p class="sub">Three parts of a loop get the least preparation and decide more than they look like they should. The take-home, where nobody is watching and the temptation is to work all weekend. The five minutes at the end when the interviewer asks what you would like to know. And the hour after each round, when what you were asked is still fresh and most candidates spend it replaying the worst answer instead of writing anything down. Tonight we put a time-box and a README around the take-home, turn your questions into a way of learning whether you want the job, and close the loop with a review that feeds the story bank and the SQL drill list after every single round.</p>
+    <div class="chip-row">
+      <span class="chip level">🟠 Deeper</span>
+      <span class="chip audience">Anyone heading into a data or AI interview</span>
+      <span class="chip audience">Bring your story bank and prep plan</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Take-homes, questions, review</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: Ren's last round</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Ren, the constructed analyst moving into a first data scientist role, has done the heavy lifting: a job description read into eight competencies, a bank of eight stories, a SQL habit of reading the question before typing, practice against the bench, and a way through the statistics and product case rounds. What is left is the part of the loop that happens around the rounds. A constructed take-home brief has arrived with "expect about 3 hours" at the bottom. A panel will end with "any questions for us?". And there will be an evening after every round with nothing scheduled in it. Tonight those three become habits rather than accidents.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = write it yourself</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A take-home read into the competencies it checks, a clarifying email ready to send, a time-box plan whose hours add up, a README skeleton you can reuse on any take-home, three questions for your panel that tell you something you need to know, and a five-line review template you fill within the hour of every round, with Ren's worked example beside it.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers take-home assignments</span>
+      <h2>A take-home is a work sample with no one watching the clock</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A take-home sends you a brief and some data and asks for an analysis back. It is the round closest to the job itself, which is both why it is useful and why it eats evenings. Two habits change it: decide the hours before you open the data, and write the README before you write the analysis. The reviewer reads your write-up first and your code second, so the write-up is the biggest block of the time-box, not whatever is left over.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 336" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A constructed four-hour time-box drawn as one bar. Reading and clarifying takes 30 minutes, data checks 45 minutes, analysis 105 minutes, and the write-up 60 minutes, highlighted in coral. Below, the checks to show in the README: row counts before and after each join, NULLs per column used, one sanity check against a known total. Beside them, the README skeleton in five lines: the question, assumptions, approach, result, what I would do with more time.">
+        <defs>
+          <filter id="p6aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="61" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p6aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p6aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p6aH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p6aL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p6aS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p6aB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p6aA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p6aN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p6aH" x="30" y="26">ONE TAKE-HOME, FOUR HOURS, BOOKED BEFORE THE DATA IS OPENED</text>
+        <text class="p6aA" x="60" y="52">CONSTRUCTED TIME-BOX</text>
+
+        <g filter="url(#p6aSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="826" cy="36" r="14" fill="#FFFFFF"/>
+          <path d="M826 36 L826 27 M826 36 L833 40" stroke-width="1.6"/>
+          <rect x="60" y="62" width="95" height="44" rx="4" transform="rotate(-0.4 107 84)" fill="#FFFFFF"/>
+          <rect x="155" y="62" width="142" height="44" rx="4" transform="rotate(0.3 226 84)" fill="#EEF2FA"/>
+          <rect x="297" y="62" width="333" height="44" rx="4" transform="rotate(-0.2 463 84)" fill="url(#p6aHc)"/>
+          <rect x="630" y="62" width="190" height="44" rx="4" transform="rotate(0.3 725 84)" fill="#FBECEA" stroke="#C2453A"/>
+          <path d="M60 112 L60 118 M250 112 L250 118 M440 112 L440 118 M630 112 L630 118 M820 112 L820 118" stroke-width="1.4"/>
+          <rect x="40" y="188" width="360" height="104" rx="8" transform="rotate(-0.4 220 240)" fill="#FFFFFF"/>
+          <rect x="440" y="188" width="390" height="116" rx="8" transform="rotate(0.4 635 246)" fill="#FFFFFF"/>
+          <path d="M725 172 L725 184" marker-end="url(#p6aAr)"/>
+        </g>
+
+        <text class="p6aS" x="60" y="132" text-anchor="middle">0h</text>
+        <text class="p6aS" x="250" y="132" text-anchor="middle">1h</text>
+        <text class="p6aS" x="440" y="132" text-anchor="middle">2h</text>
+        <text class="p6aS" x="630" y="132" text-anchor="middle">3h</text>
+        <text class="p6aS" x="820" y="132" text-anchor="middle">4h</text>
+        <text class="p6aL" x="107" y="152" text-anchor="middle">Read, clarify</text>
+        <text class="p6aS" x="107" y="168" text-anchor="middle">30 min</text>
+        <text class="p6aL" x="226" y="152" text-anchor="middle">Data checks</text>
+        <text class="p6aS" x="226" y="168" text-anchor="middle">45 min</text>
+        <text class="p6aL" x="463" y="152" text-anchor="middle">Analysis</text>
+        <text class="p6aS" x="463" y="168" text-anchor="middle">105 min</text>
+        <text class="p6aB" x="680" y="152" text-anchor="middle">Write-up</text>
+        <text class="p6aS" x="680" y="168" text-anchor="middle">60 min</text>
+
+        <text class="p6aH" x="58" y="212">CHECKS THE README SHOWS</text>
+        <text class="p6aS" x="58" y="234">Row count before and after each join</text>
+        <text class="p6aS" x="58" y="252">NULLs counted in every column you use</text>
+        <text class="p6aS" x="58" y="270">One sanity check against a known total</text>
+        <text class="p6aH" x="458" y="212">THE README, WRITTEN FIRST</text>
+        <text class="p6aL" x="458" y="234">1 The question, in one line</text>
+        <text class="p6aL" x="458" y="250">2 Assumptions I made</text>
+        <text class="p6aL" x="458" y="266">3 Approach and checks</text>
+        <text class="p6aL" x="458" y="282">4 Result and recommendation</text>
+        <text class="p6aL" x="458" y="298">5 What I would do with more time</text>
+
+        <text class="p6aN" x="30" y="326">Constructed split; your hours will differ. The write-up is booked first, never left over.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the write-up is a quarter of the box and the README is its skeleton, so the reader meets your question and result before your code</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>What the evidence does and does not say<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>No peer-reviewed study of take-home assignments' validity was found. The searches turned up vendor blogs and forum threads, not research. The nearest evidence is the literature on work sample tests, where a candidate does a piece of the actual job. <strong>Schmidt and Hunter (1998)</strong> put work samples at .54 as a correlation with later rated job performance; <strong>Sackett, Zhang, Berry and Lievens (2022)</strong> revised that to .33, one of the larger drops in their table (session 1 has the argument about why the numbers moved).</p>
+        <p>The link to take-homes is an analogy, and it should be said as one. The work samples in those studies were supervised and built for a specific job; a take-home is done alone, at home, in however many hours the candidate chooses to spend. That difference is exactly where the practice below comes from: if the hours are not controlled by the room, you have to control them yourself.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Ask the hours, keep the hours, read the brief<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Ask how long they expect it to take, and keep to it.</strong> If the brief does not say, ask. If it says "about 3 hours", plan for 3 and stop near 3. Say in the README where you stopped and what you would do next. A reviewer comparing candidates cannot see the hours, but can usually tell when one submission had a weekend and the brief asked for an evening, and some will read that as not following the brief.</p>
+        <p><strong>Read the brief into the competencies it is checking.</strong> The same move as session 1, on a smaller text. "A CSV of orders" checks data quality and wrangling. "Recommend whether to" checks whether you can turn a vague ask into a question and explain a result to someone who will act on it. The time limit checks whether you can scope. Each competency gets a line in the README.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Show your checks, skip the gold plate<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Show the checks, in the README, as numbers.</strong> Row counts before and after each join, so the reader sees nothing duplicated or dropped (session 3's grain check, written down). NULLs counted in every column the analysis uses. One sanity check against something you can know independently, such as total orders matching the row count of the raw file. A check that was run but not shown does not exist for the reviewer.</p>
+        <p><strong>Do not gold-plate.</strong> A dashboard, a model with tuned hyperparameters and a slide deck were not asked for. Extra polish spends the hours that should have gone into the write-up, and it can bury the one recommendation the brief wanted under three things it did not. If you see a bigger idea, it goes in the fifth README line, "what I would do with more time", as one sentence.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The beautiful notebook with no answer in it.</strong> A pattern reviewers describe often: a candidate submits a long notebook with clean charts, a feature engineering section and a model comparison, and the reviewer scrolls for some time before finding that the question the brief asked, should we do this or not, is never answered in a sentence. The work was real. The README that would have put the answer at the top was missing, and the reviewer had other submissions to read.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the questions you ask</span>
+      <h2>Ask to learn whether you want the job</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">In a structured interview your questions are held until after the interview proper, and they are usually not part of the score. That changes what they are for. They are not a final test to pass with a clever line. They are your one scheduled chance to measure the job the way the job has been measuring you, and the answers are data for a decision you will have to make.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 322" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three panels, one per family of candidate question, each with two example questions and an arrow down to what the answer tells you. Family 1, the work and its data: what would I work on first, who owns the quality of the data; tells you whether the work is the job you read. Family 2, how decisions get made: who uses the analysis and how, when did an analysis change a plan; tells you whether your work will be used. Family 3, how success is measured: what would good look like by month 3, how is this role reviewed; tells you what you will be judged on.">
+        <defs>
+          <filter id="p6bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="67" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p6bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p6bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p6bH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p6bL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p6bS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p6bB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p6bA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p6bN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p6bH" x="30" y="26">THREE FAMILIES OF QUESTION, AND WHAT EACH ANSWER TELLS YOU</text>
+
+        <g filter="url(#p6bSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M826 20 Q826 10 840 10 L852 10 Q864 10 864 20 Q864 30 852 30 L840 30 L832 37 L834 30 Q826 30 826 20 Z" fill="#FFFFFF" stroke-width="1.6"/>
+          <rect x="30" y="48" width="260" height="146" rx="10" transform="rotate(-0.5 160 121)" fill="#FFFFFF"/>
+          <rect x="310" y="48" width="260" height="146" rx="10" transform="rotate(0.4 440 121)" fill="#FFFFFF"/>
+          <rect x="590" y="48" width="260" height="146" rx="10" transform="rotate(-0.4 720 121)" fill="#FBECEA" stroke="#C2453A"/>
+          <path d="M160 198 L160 226 M440 198 L440 226 M720 198 L720 226" marker-end="url(#p6bAr)"/>
+          <rect x="30" y="232" width="260" height="52" rx="8" transform="rotate(0.4 160 258)" fill="#EEF2FA"/>
+          <rect x="310" y="232" width="260" height="52" rx="8" transform="rotate(-0.4 440 258)" fill="#EEF2FA"/>
+          <rect x="590" y="232" width="260" height="52" rx="8" transform="rotate(0.4 720 258)" fill="#EEF2FA"/>
+        </g>
+
+        <text class="p6bA" x="48" y="72">FAMILY 1</text>
+        <text class="p6bH" x="48" y="92">The work and its data</text>
+        <text class="p6bS" x="48" y="122">"What would I work on first?"</text>
+        <text class="p6bS" x="48" y="146">"Who owns the quality of the data?"</text>
+        <text class="p6bA" x="328" y="72">FAMILY 2</text>
+        <text class="p6bH" x="328" y="92">How decisions get made</text>
+        <text class="p6bS" x="328" y="122">"Who uses the analysis, and how?"</text>
+        <text class="p6bS" x="328" y="146">"When did an analysis change a plan?"</text>
+        <text class="p6bA" x="608" y="72">FAMILY 3</text>
+        <text class="p6bB" x="608" y="92">How success is measured</text>
+        <text class="p6bS" x="608" y="122">"What would good look like by month 3?"</text>
+        <text class="p6bS" x="608" y="146">"How is this role reviewed?"</text>
+        <text class="p6bS" x="608" y="176">Often left out; ask it anyway</text>
+
+        <text class="p6bL" x="48" y="256">Whether the work is the job you read</text>
+        <text class="p6bS" x="48" y="274">in the job description</text>
+        <text class="p6bL" x="328" y="256">Whether your work will be used</text>
+        <text class="p6bS" x="328" y="274">or filed and forgotten</text>
+        <text class="p6bL" x="608" y="256">What you will be judged on</text>
+        <text class="p6bS" x="608" y="274">once you are in the seat</text>
+
+        <text class="p6bN" x="30" y="310">Practice, not a finding: no peer-reviewed effect size for the questions a candidate asks was found.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - each family is a measurement of the job; a question whose answer would not change your decision is not worth the minute</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Where your questions sit in a structured interview<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Campion, Palmer and Campion's 1997 review listed fifteen components of interview structure. The seventh content component, as listed by <strong>Levashina, Hartwell, Morgeson and Campion (2014)</strong>, is no questions from the applicant until after the interview. The reason is measurement: questions from the candidate in the middle change the conversation from one candidate to the next, which is the inconsistency structure is trying to remove. So in a structured loop the interviewer finishes the rated questions, puts the pen down, and then asks what you would like to know.</p>
+        <p>What follows from that is modest and useful. Your questions are usually not rated, so a sharp question will not rescue a thin answer, and an ordinary question will not sink a strong one. No peer-reviewed effect size for "good questions" was found, so any claim that a particular question "impresses" interviewers is folklore. The questions are yours to spend on information.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Three families, one question from each<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>The work itself and its data.</strong> What you would work on first, what the data looks like, who owns its quality. The answer tells you whether the job matches the description you prepared for, and whether "data scientist" means models, dashboards or cleaning other people's tables. <strong>How decisions get made.</strong> Who uses the analysis, what happened the last time an analysis disagreed with a plan. The answer tells you whether your work will change anything. <strong>How success is measured in the first months.</strong> What good would look like after three months, how the role is reviewed. The answer tells you what you will be judged on once the interviews stop.</p>
+        <p>Ask different interviewers different families. The hiring manager can answer the third best; a future peer, the first; someone from the team that uses the analysis, the second. Write the answers down in your review afterwards: they are evidence too.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Ask the recruiter what each round covers<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The most useful question of the whole loop is asked before it starts: what does each round focus on? Recruiters expect it, and the answer corrects the map you drew from the job description in <a href="01-what-the-interview-measures.html">session 1</a>. Ask it again before the take-home: how long is it expected to take, and how will it be reviewed? Neither question is scored either. Both change how you spend your hours.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The question that changed the decision.</strong> A familiar story from people who have moved roles: a candidate asks, almost as an afterthought, "who reads the analysis, and what did they do with the last one?" and hears a long pause, then an honest answer that most reports go into a shared folder. That one answer told the candidate more about the job than the three rounds before it. Whatever they decided, they decided it with the information in hand.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the review after each round</span>
+      <h2>The hour after the round is part of the prep</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Memory of an interview starts editing itself almost at once: the bad answer grows, the good ones blur, and by the next morning you remember how it felt rather than what was asked. Writing five lines within the hour turns each round into data for the next one. Over a loop of four or five rounds, those notes are the difference between practising in general and practising the exact gaps that showed up.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The review loop drawn as four boxes with a return arrow. The round: what was asked, probed and answered. Notes within the hour, highlighted in coral: five lines before memory edits them. The competency gap: what evidence was missing. Update the bank or the drill list: story bank and SQL drill list. A return arrow labelled next round, with one change, runs back to the first box. Below, Ren's constructed example: a behavioural round on a disagreement, answered with story S6, missing a stated result, fixed by adding a result line to S6.">
+        <defs>
+          <filter id="p6cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="71" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p6cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p6cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p6cH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p6cL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p6cS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p6cB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p6cA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p6cN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p6cH" x="30" y="26">ONE ROUND FEEDS THE NEXT: THE REVIEW LOOP</text>
+
+        <g filter="url(#p6cSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="400" cy="38" r="10" fill="#FFFFFF" stroke-width="1.6"/>
+          <path d="M400 38 L400 32 M400 38 L405 40" stroke-width="1.4"/>
+          <rect x="30" y="56" width="180" height="72" rx="10" transform="rotate(-0.6 120 92)" fill="url(#p6cHc)"/>
+          <rect x="240" y="56" width="180" height="72" rx="10" transform="rotate(0.5 330 92)" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="450" y="56" width="180" height="72" rx="10" transform="rotate(-0.4 540 92)" fill="#FFFFFF"/>
+          <rect x="660" y="56" width="190" height="72" rx="10" transform="rotate(0.4 755 92)" fill="#EEF2FA"/>
+          <path d="M214 92 L236 92 M424 92 L446 92 M634 92 L656 92" marker-end="url(#p6cAr)"/>
+          <path d="M755 132 L755 170 Q755 180 745 180 L130 180 Q120 180 120 170 L120 134" marker-end="url(#p6cAr)"/>
+          <rect x="30" y="216" width="820" height="40" rx="8" transform="rotate(-0.2 440 236)" fill="#FFFFFF"/>
+        </g>
+
+        <text class="p6cH" x="46" y="86">The round</text>
+        <text class="p6cL" x="46" y="106">asked, probed, answered</text>
+        <text class="p6cB" x="256" y="86">Notes within the hour</text>
+        <text class="p6cS" x="256" y="106">five lines, before memory</text>
+        <text class="p6cS" x="256" y="120">edits them</text>
+        <text class="p6cH" x="466" y="86">The competency gap</text>
+        <text class="p6cS" x="466" y="106">what evidence was missing</text>
+        <text class="p6cH" x="676" y="86">Update bank or drill</text>
+        <text class="p6cS" x="676" y="106">story bank, SQL drill list</text>
+        <text class="p6cA" x="440" y="200" text-anchor="middle">NEXT ROUND, WITH ONE CHANGE</text>
+
+        <text class="p6cL" x="46" y="241">Ren (constructed): disagreement question, answered with S6, no stated result, add a result line to S6</text>
+
+        <text class="p6cN" x="30" y="284">The loop is a routine, not a finding; what makes it work is that the gap is named as a competency.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the coral box is the habit; skip it and the gap never reaches the bank, so the next round meets the same thin answer</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Five lines, within the hour<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Write them on your phone on the way out if you have to. <strong>1 What was asked</strong>, as close to the words as you can. <strong>2 Which competency it was probing</strong>, named from your session 1 list. <strong>3 What you answered</strong>: which story or which query, in a line. <strong>4 What evidence was missing</strong>: a result you did not state, a check you did not say out loud, a NULL you did not mention. <strong>5 One change</strong> for the next round, only one.</p>
+        <p>Line 2 is what makes the rest useful. "That went badly" cannot be practised. "The disagreement question, and my story had no result" can be practised tonight. The structured interviewer was scoring per competency; your review uses the same grain.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Feed the bank and the drill list<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A review that stays in a notes app changes nothing. Line 4 goes somewhere. A behavioural gap goes into the <a href="02-a-story-bank.html">session 2 story bank</a>: add the missing result to the card, retag the story if it evidenced a different competency than you thought, or mark a competency thin if no story fitted. A technical gap goes onto the SQL drill list from <a href="03-the-sql-round.html">session 3</a>, and you run that trap again on the <a href="04-the-practice-round-bench.html">session 4 bench</a> until it fails for the right reason when you plant it and passes when you fix it.</p>
+        <p>The answers to your own questions go in too. If the hiring manager said good at month 3 means "owns the weekly experiment readout", that is a competency to check your bank against before the next round.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Ren's loop, closed (constructed)<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Ren is constructed, and so is this loop. Across a recruiter screen, a SQL round, a take-home, a behavioural round and a panel, Ren filled five reviews. The screen review corrected the round map: there was no separate statistics round, so experiments would come up in the panel. The SQL review named one trap, a WHERE on the right-hand table of a LEFT JOIN, and it went onto the drill list and back through the bench twice. The take-home review noted 3 hours 10 minutes against a 3-hour brief and a README whose fifth line did the job it was meant to. The behavioural review is the one worked in step 6 below. The panel review recorded the answers to Ren's three questions.</p>
+        <p>What happens next for Ren is not on this page, on purpose. Nothing here claims an outcome, and nothing describes how any real employer runs a loop. What the routine buys is narrower and dependable: every round leaves Ren better prepared for the next one than the hours alone would have.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The same gap, three rounds running.</strong> A pattern career coaches describe: a candidate leaves four interviews in a fortnight each feeling "it was fine", writes nothing down, and only when someone asks them to list what they were asked do they notice that three rounds asked about influencing a stakeholder and they told the same story without a result each time. Five lines after the first round would have caught it two rounds earlier.</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Ren's take-home, questions and review, then yours</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">Every artefact below is something you will use in a real loop. Ren's take-home brief is constructed: a CSV of orders from a constructed online shop, a request to recommend whether to change the free-delivery threshold, and "expect about 3 hours". Work each step on Ren's brief first, then write your own version for the loop you are in. Your numbers will differ.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 276" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four phrases from Ren's constructed take-home brief on the left, each with an arrow to the competency it checks on the right. A CSV of orders from a constructed online shop checks data quality and SQL. Change the free-delivery threshold checks turning a vague ask into a question, highlighted in coral because the brief does not say which metric decides. Recommend whether to change it checks explaining results. Expect about 3 hours checks working to a time-box.">
+        <defs>
+          <filter id="p6dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="79" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="p6dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#2A4FA0" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="p6dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#18203A" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .p6dH { font: 800 12px Inter, sans-serif; fill: #18203A; }
+          .p6dL { font: 600 12px Inter, sans-serif; fill: #18203A; }
+          .p6dS { font: 400 11px Inter, sans-serif; fill: #525C75; }
+          .p6dB { font: 800 11px Inter, sans-serif; fill: #8E2A22; }
+          .p6dA { font: 700 11px Inter, sans-serif; fill: #2A4FA0; }
+          .p6dN { font: 400 12px Inter, sans-serif; fill: #525C75; }
+        </style>
+
+        <text class="p6dH" x="30" y="26">A PHRASE OF THE BRIEF, THE COMPETENCY IT CHECKS</text>
+        <text class="p6dA" x="30" y="48">REN'S TAKE-HOME BRIEF (CONSTRUCTED)</text>
+        <text class="p6dA" x="560" y="48">COMPETENCY CHECKED</text>
+
+        <g filter="url(#p6dSk)" fill="none" stroke="#18203A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="58" width="440" height="176" rx="8" transform="rotate(-0.3 250 146)" fill="#FFFFFF"/>
+          <rect x="46" y="70" width="340" height="24" rx="4" fill="#EEF2FA" stroke="none"/>
+          <rect x="46" y="110" width="340" height="24" rx="4" fill="#FBECEA" stroke="none"/>
+          <rect x="46" y="150" width="340" height="24" rx="4" fill="#EEF2FA" stroke="none"/>
+          <rect x="46" y="190" width="340" height="24" rx="4" fill="#EEF2FA" stroke="none"/>
+          <path d="M478 82 L552 82 M478 122 L552 122 M478 162 L552 162 M478 202 L552 202" marker-end="url(#p6dAr)"/>
+          <rect x="560" y="68" width="230" height="28" rx="14" fill="#EEF2FA"/>
+          <rect x="560" y="108" width="230" height="28" rx="14" fill="#FBECEA" stroke="#C2453A"/>
+          <rect x="560" y="148" width="230" height="28" rx="14" fill="#EEF2FA"/>
+          <rect x="560" y="188" width="230" height="28" rx="14" fill="#EEF2FA"/>
+          <path d="M812 112 L820 104 L828 112 M820 104 L820 130" stroke-width="1.6"/>
+        </g>
+
+        <text class="p6dL" x="50" y="87">A CSV of orders from an online shop</text>
+        <text class="p6dL" x="50" y="127">change the free-delivery threshold</text>
+        <text class="p6dL" x="50" y="167">recommend whether to change it</text>
+        <text class="p6dL" x="50" y="207">expect about 3 hours</text>
+        <text class="p6dL" x="576" y="86">Data quality and SQL</text>
+        <text class="p6dB" x="576" y="126">Vague ask into a question</text>
+        <text class="p6dL" x="576" y="166">Explaining results</text>
+        <text class="p6dL" x="576" y="206">Working to a time-box</text>
+
+        <text class="p6dN" x="30" y="262">The coral row is unclear by design: the brief never says which metric decides. That is the clarifying email.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - read the brief like a job description; the phrase that hides a choice is the one you ask about before opening the data</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Read the brief into competencies.</strong> One line per phrase, the competency it checks, and where it will show in your submission. If a phrase hides a choice the brief did not make, mark it: that is step 2.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · Ren's brief, read (constructed)</span>"a CSV of orders"            -&gt; data quality, SQL      -&gt; README checks
+"change the threshold"       -&gt; vague ask to question  -&gt; ASK: which metric decides?
+"recommend whether"          -&gt; explaining results     -&gt; README line 4, one sentence
+"expect about 3 hours"       -&gt; working to a time-box  -&gt; plan in step 3, stop near 3h</div>
+      </div>
+      <div class="step">
+        <p><strong>Write the clarifying email before opening the data.</strong> Two or three questions at most, each one a choice that would change the analysis. End with the assumption you will make if nobody answers, so silence does not block you.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · the clarifying email</span>Subject: Take-home: two quick questions before I start
+
+Thanks for the brief. Two questions so I answer the right one:
+1 Should the recommendation be judged on order volume, on revenue
+  after delivery cost, or on something else?
+2 Is "about 3 hours" a guide or a limit? I plan to stop near 3 hours
+  and note what I would do next.
+
+If I do not hear back by tomorrow, I will judge on revenue after
+delivery cost and say so in the README.
+
+Ren</div>
+      </div>
+      <div class="step">
+        <p><strong>Plan the time-box, and check that it adds up.</strong> Book the write-up first, then the checks, then whatever is left for analysis. Keep a small buffer. Ren's hours are constructed; yours will differ.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · Ren's 3-hour plan (constructed)</span>Read brief, send email ....  15 min
+Data checks ...............  30 min
+Analysis ..................  75 min
+Write-up (README) .........  50 min
+Buffer ....................  10 min
+                            -------
+Total .....................  180 min = 3 hours</div>
+      </div>
+      <div class="step">
+        <p><strong>Write the README skeleton first.</strong> Five headings and a placeholder under each, before any analysis. Fill the first two now; the rest fill as you go. Reuse the skeleton for every take-home.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · README skeleton</span># Free-delivery threshold: should it change?
+
+## 1 Question
+Would changing the free-delivery threshold raise revenue after
+delivery cost, without losing orders we care about?
+
+## 2 Assumptions
+- Judged on revenue after delivery cost (see email)
+- One row in the CSV is one order; checked below
+
+## 3 Approach and checks
+- Row count raw: ___   after cleaning: ___
+- NULLs per column used: ___
+- Sanity check: total orders match raw file rows? ___
+
+## 4 Result and recommendation
+(one sentence first, then the evidence)
+
+## 5 What I would do with more time
+(one or two lines; this is where the bigger ideas go)</div>
+      </div>
+      <div class="step">
+        <p><strong>Write your three questions for the panel, one from each family.</strong> Check each one: would the answer change whether you want the job? If not, swap it.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · Ren's three questions</span>The work:     What would I work on in my first month, and what
+              state is that data in today?
+Decisions:    Who reads the analysis from this team, and what
+              happened the last time it disagreed with a plan?
+Success:      What would good look like by month 3 in this role?</div>
+      </div>
+      <div class="step">
+        <p><strong>Fill an after-round review, then update the bank.</strong> Ren's is for a constructed behavioural round. Write yours within the hour of your next real round, and make line 4 land somewhere before you close the note.</p>
+        <div class="prompt-box good"><span class="label">★ Step 6 · Ren's review, behavioural round (constructed)</span>1 Asked:      "Tell me about a time you disagreed with a stakeholder."
+2 Probing:    Disagreeing and pushing back
+3 Answered:   S6 "Saying no to a misleading chart" (140 s)
+4 Missing:    no stated result; I stopped at "so I explained why"
+5 One change: end S6 with what happened after, in one sentence
+
+Bank update:
+S6 card  result: add the line on what the stakeholder did next
+S6 tags  pushing back strong, explaining strong (unchanged)
+Next:    rehearse S6 aloud once, ending on the result</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Keep the five templates in one place.</strong> Brief reading, clarifying email, time-box, README skeleton, questions and review all fit in one document. The second take-home and the third review take minutes instead of an evening, because the thinking is already written down.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before your next round</h2>
+      <span class="tag exercise">40 min</span>
+    </div>
+    <ol>
+      <li><strong>Write your README skeleton</strong> with the five headings and the three checks, and save it where you will find it when a take-home arrives.</li>
+      <li><strong>Write three questions for your next panel</strong>, one per family, and test each against "would the answer change my decision?".</li>
+      <li><strong>Make a review template</strong> with the five lines and a "bank update" line, on your phone, ready to fill on the way out of a round.</li>
+      <li><strong>Review one past interview from memory.</strong> Fill the five lines for it, even if it was months ago, and put whatever line 4 says into your story bank or SQL drill list.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 6 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">1 · A take-home brief says "expect about 3 hours". Which plan follows Part 1?</p>
+      <button class="qopt" type="button">A · Spend the weekend on it, since more effort shows more commitment</button>
+      <button class="qopt" type="button">B · Plan about 3 hours with the write-up booked first, write the README skeleton before the analysis, show row counts, NULLs and a sanity check, and put bigger ideas in "what I would do with more time"</button>
+      <button class="qopt" type="button">C · Skip the README and send the notebook, because the code speaks for itself</button>
+      <button class="qopt" type="button">D · Add a dashboard and a tuned model to stand out</button>
+      <p class="qwhy">No peer-reviewed study of take-home validity was found, so the practice rests on the work-sample analogy and on the brief itself. Keeping to the stated hours, putting the question and result first, and showing the checks answers what was asked. A and D gold-plate and spend the hours the write-up needed; C hides the answer from the reader.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">2 · Why are the questions you ask usually not part of the score in a structured interview?</p>
+      <button class="qopt" type="button">A · Holding applicant questions until after the interview is one of Campion et al.'s components of structure, as listed by Levashina et al. (2014), so the rated questions stay the same for every candidate; your questions are information for your own decision</button>
+      <button class="qopt" type="button">B · Research shows candidate questions have a large effect on hiring decisions</button>
+      <button class="qopt" type="button">C · Interviewers are not allowed to answer questions</button>
+      <button class="qopt" type="button">D · Asking no questions is the safest choice</button>
+      <p class="qwhy">The component exists to keep the measurement consistent across candidates. No peer-reviewed effect size for candidate questions was found, which rules out B. The questions are still worth asking, which rules out D, and C misreads the component: questions are held to the end, not refused.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">3 · Ren leaves a behavioural round that "felt fine". What does the review routine ask for?</p>
+      <button class="qopt" type="button">A · Nothing until the result arrives, then reflect</button>
+      <button class="qopt" type="button">B · A general note on how confident it felt</button>
+      <button class="qopt" type="button">C · Replaying the worst answer until it feels better</button>
+      <button class="qopt" type="button">D · Within the hour: what was asked, the competency it probed, what was answered, the evidence that was missing, and one change; then update the story bank or SQL drill list</button>
+      <p class="qwhy">Naming the gap as a competency is what makes it practisable, and the bank or drill list is where it turns into the next round's answer. A loses the details to memory, B records a feeling rather than a gap, and C spends the hour without writing anything down.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Schmidt and Hunter (1998), Psychological Bulletin 124(2); Sackett, Zhang, Berry and Lievens (2022), Journal of Applied Psychology 107(11)</span><span class="note">Work sample tests .54 in 1998 and .33 in 2022; both read in full; used here only as an analogy for take-homes, since those work samples were supervised and job-specific</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Take-home assignment validity</span><span class="note">No peer-reviewed study found; time-box, README and checks are taught as practice</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Campion, Palmer and Campion (1997), Personnel Psychology 50(3)</span><span class="note">Component 7, no applicant questions until after the interview, as listed by Levashina et al. (2014), Personnel Psychology 67(1); the 1997 original was not read</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Effect of the questions a candidate asks</span><span class="note">No peer-reviewed effect size found; the three families are practice for learning about the job</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Ren, the take-home brief, the hours and the reviews</span><span class="note">Constructed for teaching; no real employer, process or outcome is described</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 6 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Take-home evidence</b><span>No study found; work samples .54 (1998) and .33 (2022) are an analogy, not proof.</span></div>
+      <div class="cheat-item"><b>Time-box</b><span>Ask the hours, keep the hours, book the write-up first, say where you stopped.</span></div>
+      <div class="cheat-item"><b>README first</b><span>Question, assumptions, approach and checks, result, what I would do with more time.</span></div>
+      <div class="cheat-item"><b>Show the checks</b><span>Row counts around each join, NULLs per column used, one sanity check. No gold plate.</span></div>
+      <div class="cheat-item"><b>Your questions</b><span>Held to the end, usually not scored. Ask the work, the decisions, how success is measured.</span></div>
+      <div class="cheat-item"><b>The review</b><span>Within the hour: asked, competency, answered, missing, one change. Then update the bank or drill list.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>This is the last session, and the loop it closes is yours to keep running. Go back to the <a href="../index.html">course home and the knowledge map</a> to see how the six sessions connect, and reread session 1's prep plan with five reviews' worth of evidence beside it. For the other side of the table, structured interviews as the interviewer runs them, see <a href="https://phoebefu6.github.io/learn-ai-hr-with-phoebe/courses/b5-structured-interviews.html">learn-ai-hr ↗</a>. For the reputation and portfolio that arrive before you do, see <a href="https://phoebefu6.github.io/learn-personal-branding-with-phoebe/">learn-personal-branding ↗</a>.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 6 of 6 · learn-interview-prep-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="05-stats-and-the-product-case.html">← Prev: Stats, experiments and the product case</a> &nbsp;·&nbsp; <a href="../index.html">Course home</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=15"></script>
+</body>
+</html>
